@@ -1,0 +1,69 @@
+#! /usr/bin/bash
+#
+# Copyright © 2015-2019 Gerald B. Cox
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+version="1.0.0"
+
+source src_set_colors
+
+input_base_dir="$1"
+output_base_dir="$2"
+output_codec="${3^^}"
+
+valid_codec="NO"
+valid_dir="NO"
+valid_output="NO"
+need_header="YES"
+
+source src_tf_ck_input
+source src_tf_ck_output
+source src_tf_ck_codec
+
+find $input_base_dir -print0 | while IFS= read -r -d '' file
+do
+
+	filedir=${file%/*}
+	full_filename=${file##*/}
+	filename=${full_filename%.*}
+	filetype=${full_filename##*.}
+
+	if [ "$filedir/" == "$input_base_dir" ];
+	then
+		filedir=""
+	else
+		filedir=${filedir#$input_base_dir}
+	fi
+
+	if [ ! -d "$output_base_dir$filedir" ]; 
+	then
+		mkdir "$output_base_dir$filedir"
+	fi
+
+	source src_tf_codec
+
+done
+
+if [[ $need_header == "YES" ]];
+then
+	printf "${RESTORE}\n"
+fi
+
+printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
+rsync -avzq --include '*/' --include '*.jpg' --exclude '*' $input_base_dir"/" $output_base_dir"/"
+printf "${BLUE}${BOLD}\n%sProcessing complete\n"
+printf "${RESTORE}\n"
+
+exit
