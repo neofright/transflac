@@ -45,5 +45,4 @@ uninstall:
 	$(DESTDIR)$(docdir)/LICENSE.md \
 	$(DESTDIR)$(docdir)/README.md \
 	$(DESTDIR)$(docdir)/contributors.txt \
-	$(DESTDIR)$(docdir)/README \
 	$(DESTDIR)$(mandir)/man1/transflac.1	
