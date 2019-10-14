@@ -22,28 +22,38 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
+shopt -s extglob
+
+if [[ "$(rpm -q ffmpegx)" =~ "not installed" ]]
+then
+	supported_codecs="Supported:  OPUS | OGG"
+	codecs="@(OPUS|OGG)"
+else
+	supported_codecs="Supported:  OPUS | OGG | AAC | MP3"
+	codecs="@(OPUS|OGG|AAC|MP3)"
+fi
+
 until [[ $valid_codec == "YES" ]]; do
 
 	case "${output_codec^^}" in
-		OPUS|OGG|AAC|MP3	)
+		$codecs	)
 			valid_codec="YES"
-			printf "${GREEN}%s${YELLOW}%s${GREEN}%s\n${RESTORE}\n" "Transcoding " "$input_base_dir " "from FLAC to ${output_codec^^}";;
+			printf "${GREEN}%s${YELLOW}%s${GREEN}%s\n${RESTORE}\n" /
+				"Transcoding from FLAC to ${output_codec^^}";;
+
 		QUIT	)
 			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered quit."
 			exit;;
+
 		*	)
 			printf "${GREEN}%s\n" "Please enter desired output CODEC"
-#			if rpm -q "ffmpegx" | grep "not installed" > /dev/null
-if [[ "$(rpm -q ffmpeg)" =~ "not installed" ]]
-			then
-				printf "${YELLOW}%s${CYAN}\n" "Supported:  OPUS | OGG"
-			else
-				printf "${YELLOW}%s${CYAN}\n" "Supported:  OPUS | OGG | AAC | MP3"
-			fi
+			printf "${YELLOW}%s${CYAN}\n" "$supported_codecs"
 			read -p "[ENTER]:  " output_codec
 			printf "${RESTORE}\n";;
 	esac
 
 done
+
+shopt -u extglob
 
 return

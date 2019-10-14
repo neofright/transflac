@@ -18,10 +18,12 @@
 version="1.0.0"
 
 source src_set_colors
+source /etc/transflac.conf
+source $HOME/.transflac.conf
 
-input_base_dir="$1"
-output_base_dir="$2"
-output_codec="${3^^}"
+#input_base_dir="$1"
+#output_base_dir="$2"
+#output_codec="${3^^}"
 
 valid_codec="NO"
 valid_dir="NO"

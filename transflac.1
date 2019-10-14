@@ -1,1 +1,90 @@
-sample man file
+.TH transflac 1
+.SH NAME
+transflac \- convert FLAC audio files to lossy formats.
+.SH SYNOPSIS
+.B transflac
+[input_FLAC_directory] [output_lossy_directory] [lossy_format]
+.SH DESCRIPTION
+The process of converting FLAC files to lossy formats
+and preserving tag information can be a bit tedious.
+.BR transflac
+is designed to automate this. It will start at the input_flac_directory and
+recursively walk the directory structure converting each flac audio file to the
+specified lossy codec - preserving all associated tag information.  Additionally,
+any cover art (stored in the directory structure as folder.jpg) will be
+duplicated in the target lossy directories.
+.SH CONFIGURATION
+\fBtransflac\fR sources two configuration files on startup - \fI/etc/transflac.conf\fR and
+\fI$HOME/.transflac.conf\fR, in that order.
+.PP
+The configuration options stated in those files can be overridden by providing
+the appropriate flags at runtime.
+.PP
+The configuration variables have to be set as follows:
+.TP
+.B VARIABLE="value"
+"value" needs to be quoted.
+.TP
+All shell escaping/quoting rules apply.
+.TP
+Here is a list of options \fBtransflac\fR recognizes:
+.TP
+.B input_base_dir=""
+Specifies the directory starting point which will be recursively
+search for FLAC audio files.  All FLAC audio files in the directory
+structure will be converted to the specified lossy codec.
+Default value is "$1" which is arg1 from the command line invocation.
+This value is case sensitive.
+.TP
+.B output_base_dir=""
+Specifies the target directory which will be used to store the lossy
+audio files which are created during the conversion process.
+Default value is "$2" which is arg2 from the command line invocation.
+This value is case sensitive.
+.TP
+.B output_codec=""
+Specifies the lossy codec which will be used to convert the FLAC
+audio files.  Default value is "$3" which is arg3 from the command line
+invocation.  This value is NOT case sensitive.  It will be converted to
+upper case in all instances.
+.SH EXAMPLES
+Possible ways one can call \fBtransflac\fR:
+.TP
+.B transflac
+You will be prompted to enter all options.  If you have customized
+options in $HOME/.transflac.conf those values will be substituted.
+.TP
+.B transflac [input_directory] [output_directory] [lossy_codec]
+transflac processing will proceed with the options entered on the
+command line.
+.SH BACKEND TOOLS
+\fBtransflac\fR requires the following backend tools to work:
+.TP
+.B *
+opus-tools - Required to convert files to the OPUS lossy format
+.TP
+.B *
+vorbis-tools - Required to convert files to the OGG Vorbis lossy
+format
+.TP
+.B *
+ffmpeg - Required to convert files to the AAC or MP3 lossy formats
+.TP
+.B *
+flac - Required to convert files from the FLAC lossless format
+.TP
+.B *
+rsync - Required to copy cover art files to the new lossy format
+directory structure
+.TP
+.B *
+figlet - Required to facilate display formatting
+.SH "SEE ALSO"
+.BR opusenc (1),
+.BR oggenc (1),
+.BR flac (1),
+.BR ffmpeg (1)
+.SH AUTHOR
+Gerald Cox <gbcox@fedoraproject.org>
+.SH WWW
+.BR https://bitbucket.org/gbcox/transflac/
