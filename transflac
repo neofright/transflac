@@ -17,7 +17,7 @@
 
 version="1.0.0"
 
-source src_set_colors
+source src_tf_set_colors
 source /etc/transflac.conf
 source $HOME/.transflac.conf
 
