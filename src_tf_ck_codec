@@ -24,7 +24,7 @@ esac
 
 shopt -s extglob
 
-if [[ "$(rpm -q ffmpegx)" =~ "not installed" ]]
+if [[ "$(rpm -q ffmpeg)" =~ "not installed" ]]
 then
 	supported_codecs="Supported:  OPUS | OGG"
 	codecs="@(OPUS|OGG)"

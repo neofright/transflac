@@ -23,7 +23,7 @@ esac
 
 need_header="NO"
 
-source src_tf_figlet
+source $SRC/src_tf_figlet
 
 printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$input_base_dir"
 printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$output_base_dir"
