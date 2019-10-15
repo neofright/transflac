@@ -16,7 +16,7 @@ clean:
 
 install:
 	$(INSTALL) -d -m 755 $(DESTDIR)$(bindir)
-	$(INSTALL) -m 755 transflac src_set_colors $(DESTDIR)$(bindir)
+	$(INSTALL) -m 755 transflac src_tf_set_colors $(DESTDIR)$(bindir)
 	$(INSTALL) -m 755 src_tf_ck_codec $(DESTDIR)$(bindir)
 	$(INSTALL) -m 755 src_tf_ck_input $(DESTDIR)$(bindir)
 	$(INSTALL) -m 755 src_tf_ck_output $(DESTDIR)$(bindir)
@@ -34,7 +34,7 @@ uninstall:
 
 	-rm -v \
 	$(DESTDIR)$(bindir)/transflac \
-	$(DESTDIR)$(bindir)/src_set_colors \
+	$(DESTDIR)$(bindir)/src_tf_set_colors \
 	$(DESTDIR)$(bindir)/src_tf_ck_codec \
 	$(DESTDIR)$(bindir)/src_tf_ck_input \
 	$(DESTDIR)$(bindir)/src_tf_ck_output \
@@ -45,4 +45,4 @@ uninstall:
 	$(DESTDIR)$(docdir)/LICENSE.md \
 	$(DESTDIR)$(docdir)/README.md \
 	$(DESTDIR)$(docdir)/contributors.txt \
-	$(DESTDIR)$(mandir)/man1/transflac.1	
+	$(DESTDIR)$(mandir)/man1/transflac.1
