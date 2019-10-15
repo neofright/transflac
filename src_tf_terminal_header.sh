@@ -1,5 +1,3 @@
-#! /usr/bin/bash
-#
 # Copyright © 2015-2019 Gerald B. Cox
 #
 # This program is free software: you can redistribute it and/or modify
@@ -21,10 +19,13 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-clear
+need_header="NO"
 
-printf "${BLUE}${BOLD}"
-( figlet TransFLAC )
-printf "${RESTORE}"
+source $SRC/src_tf_figlet.sh
+
+printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$input_base_dir"
+printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$output_base_dir"
+printf "${PURPLE}%s\n\n" "Transcoding from FLAC to ${output_codec^^}"
+printf "${LBLUE}%s${LGRAY}%s${GREEN}%s${LBLUE}%s${RESTORE}\n\n" "***" " $total_flac " "FLAC files are being processed " "***"
 
 return

@@ -17,7 +17,7 @@
 
 version="1.0.0"
 
-SRC=$(dirname "${BASH_SOURCE[0]}")
+SRC=$("/usr/libexecdir/transflac")
 
 source $SRC/src_tf_set_colors
 source /etc/transflac.conf
@@ -27,18 +27,14 @@ then
 	source $HOME/.transflac.conf
 fi
 
-#input_base_dir="$1"
-#output_base_dir="$2"
-#output_codec="${3^^}"
-
 valid_codec="NO"
 valid_dir="NO"
 valid_output="NO"
 need_header="YES"
 
-source $SRC/src_tf_ck_input
-source $SRC/src_tf_ck_output
-source $SRC/src_tf_ck_codec
+source $SRC/src_tf_ck_input.sh
+source $SRC/src_tf_ck_output.sh
+source $SRC/src_tf_ck_codec.sh
 
 find $input_base_dir -print0 | while IFS= read -r -d '' file
 do

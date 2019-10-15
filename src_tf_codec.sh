@@ -1,5 +1,3 @@
-#! /usr/bin/bash
-#
 # Copyright © 2015-2019 Gerald B. Cox
 #
 # This program is free software: you can redistribute it and/or modify
@@ -56,7 +54,7 @@ else
 
 		if [[ $need_header == "YES" ]];
 		then
-			source $SRC/src_tf_terminal_header
+			source $SRC/src_tf_terminal_header.sh
 		fi
 
 		printf "\e[K${YELLOW}%s ${RESTORE}\r" $file

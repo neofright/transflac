@@ -1,5 +1,3 @@
-#! /usr/bin/bash
-#
 # Copyright © 2015-2019 Gerald B. Cox
 #
 # This program is free software: you can redistribute it and/or modify
@@ -15,43 +13,42 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 case $BASH_SOURCE in
 	$0	)
 		printf "%s\nScript must be invoked via source command\nExiting\n"
 		exit;;
 esac
 
-until [[ $valid_dir == "YES" ]]; do
+until [[ $valid_output == "YES" ]]; do
 
-	case $input_base_dir in
-		*[!/]*/) input_base_dir=${input_base_dir%"${input_base_dir##*[!/]}"};;
+	case $output_base_dir in
+		*[!/]*/) output_base_dir=${output_base_dir%"${output_base_dir##*[!/]}"};;
 	esac
 
-	if [[ ${input_base_dir^^} == "QUIT" ]];
+	if [[ ${output_base_dir^^} == "QUIT" ]];
 	then
 		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered quit."
 		exit
 	fi
 
-	flac_count=$( find $input_base_dir 2>/dev/null | grep -c .flac )
-	total_flac=$flac_count
+	mkdir_output=$(mkdir $output_base_dir 2>&1 > /dev/null)
 
-	if [[ -d $input_base_dir && $flac_count -gt 0 ]];
+	if [[ $mkdir_output != *"No such file"* ]] && \
+	[[ $mkdir_output != *"missing"* ]];
 	then
-		valid_dir="YES"
-		source src_tf_figlet
+		valid_output="YES"
+		source $SRC/src_tf_figlet.sh
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n" "OUTPUT " "Directory " "$output_base_dir" " accepted"
 	else
-		clear
-		printf "${BLUE}${BOLD}"
-		( figlet TransFLAC )
-		printf "${RESTORE}"
-		if [[ $input_base_dir != "" ]];
+		valid_output="NO"
+		if [[ $output_base_dir != "" ]]
 		then
-			printf "${RED}%s${YELLOW}%s\n" "Invalid FLAC Directory:  " "$input_base_dir"
+			printf "${RED}%s${YELLOW}%s\n" "Invalid Output Directory:  " "$output_base_dir"
 		fi
-		printf "${GREEN}%s${CYAN}\n" "Please enter input FLAC directory and press"
-		read -e -p "[ENTER]:  " input_base_dir output_base_dir output_codec
+		printf "${GREEN}%s${CYAN}\n" "Please enter output directory and press"
+		read -p "[ENTER]:  " output_base_dir output_codec
 		printf "${RESTORE}\n"
 	fi
 
