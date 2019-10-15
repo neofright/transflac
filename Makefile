@@ -1,4 +1,5 @@
-transflac_version = transflac-1.0.0
+package_name = transflac
+package_version = 1.0.0
 INSTALL = /usr/bin/install -c
 
 prefix = /usr/local
@@ -6,7 +7,7 @@ exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 sysconfdir = /etc
 datarootdir = $(prefix)/share
-docdir = $(datarootdir)/doc/$(transflac_version)
+docdir = $(datarootdir)/doc/$(package_name)
 mandir = $(datarootdir)/man
 DESTDIR =
 
