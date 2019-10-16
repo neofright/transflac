@@ -17,15 +17,14 @@
 
 version="1.0.0"
 
-SRC=$("/usr/libexecdir/transflac")
-
-source $SRC/src_tf_set_colors
 source /etc/transflac.conf
 
 if [ -f "$HOME/.transflac.conf" ];
 then
 	source $HOME/.transflac.conf
 fi
+
+source $SRC/src_tf_set_colors.sh
 
 valid_codec="NO"
 valid_dir="NO"
@@ -56,7 +55,7 @@ do
 		mkdir "$output_base_dir$filedir"
 	fi
 
-	source $SRC/src_tf_codec
+	source $SRC/src_tf_codec.sh
 
 done
 
