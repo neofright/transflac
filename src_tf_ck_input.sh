@@ -25,11 +25,15 @@ until [[ $valid_dir == "YES" ]]; do
 		*[!/]*/) input_base_dir=${input_base_dir%"${input_base_dir##*[!/]}"};;
 	esac
 
-	if [[ ${input_base_dir^^} == "QUIT" ]];
-	then
-		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered quit."
-		exit
-	fi
+
+	case ${input_base_dir^^} in
+		"QUIT"|"EXIT"	)
+		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $input_base_dir."
+		exit;;
+	"-H"|"--HELP"	)
+		source $SRC/src_tf_help.sh
+		exit;;
+esac
 
 	flac_count=$( find $input_base_dir 2>/dev/null | grep -c .flac )
 	total_flac=$flac_count

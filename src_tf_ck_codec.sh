@@ -38,11 +38,12 @@ until [[ $valid_codec == "YES" ]]; do
 			valid_codec="YES"
 			printf "${GREEN}%s${YELLOW}%s${GREEN}%s\n${RESTORE}\n" /
 				"Transcoding from FLAC to ${output_codec^^}";;
-
-		QUIT	)
-			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered quit."
+		"QUIT"|"EXIT"	)
+			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $output_codec."
 			exit;;
-
+		"-H"|"--HELP"▷⋅⋅)
+			source $SRC/src_tf_help.sh
+			exit;;
 		*	)
 			printf "${GREEN}%s\n" "Please enter desired output CODEC"
 			printf "${YELLOW}%s${CYAN}\n" "$supported_codecs"

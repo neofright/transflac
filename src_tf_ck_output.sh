@@ -26,11 +26,14 @@ until [[ $valid_output == "YES" ]]; do
 		*[!/]*/) output_base_dir=${output_base_dir%"${output_base_dir##*[!/]}"};;
 	esac
 
-	if [[ ${output_base_dir^^} == "QUIT" ]];
-	then
-		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered quit."
-		exit
-	fi
+	case ${output_base_dir^^} in
+		"QUIT"|"EXIT"▷⋅⋅)
+			printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $output_base_dir."
+			exit;;
+		"-H"|"--HELP"	)
+			source $SRC/src_tf_help.sh
+			exit;;
+		esac
 
 	mkdir_output=$(mkdir $output_base_dir 2>&1 > /dev/null)
 
