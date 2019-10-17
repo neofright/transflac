@@ -27,6 +27,7 @@ install:
 	$(INSTALL) -m 644 src_tf_codec.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -m 644 src_tf_figlet.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -m 644 src_tf_terminal_header.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src_tf_help.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(sysconfdir)
 	$(INSTALL) -m 644 transflac.conf $(DESTDIR)$(sysconfdir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(docdir)
@@ -43,6 +44,7 @@ uninstall:
 	$(DESTDIR)$(libexecdir)/src_tf_ck_input.sh \
 	$(DESTDIR)$(libexecdir)/src_tf_ck_output.sh \
 	$(DESTDIR)$(libexecdir)/src_tf_codec.sh \
+	$(DESTDIR)$(libexecdir)/src_tf_help.sh \
 	$(DESTDIR)$(libexecdir)/src_tf_figlet.sh \
 	$(DESTDIR)$(libexecdir)/src_tf_terminal_header.sh \
 	$(DESTDIR)$(sysconfdir)/transflac.conf \
