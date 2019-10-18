@@ -35,9 +35,9 @@ then
 		"OPUS"	)
 			opusenc --quiet $file $output_base_dir$filedir"/"$filename".opus";;
 		"OGG"	)
-			oggenc --quality=5 --quiet $file -o $output_base_dir$filedir"/"$filename".ogg";;
+			oggenc --quality=3 --quiet $file -o $output_base_dir$filedir"/"$filename".ogg";;
 		"AAC"	)
-			ffmpeg -nostats -loglevel 0 -i "$file" -b:a 128k $output_base_dir$filedir"/"$filename".m4a" </dev/null;;
+			ffmpeg -nostats -loglevel 0 -i "$file" -c:a libfdk_aac -vbr 3 $output_base_dir$filedir"/"$filename".m4a" </dev/null;;
 		"MP3"	)
 			ffmpeg -nostats -loglevel 0 -i "$file" -aq 6 $output_base_dir$filedir"/"$filename".mp3" </dev/null;;
 	esac
