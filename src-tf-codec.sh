@@ -71,7 +71,7 @@ else
 
 		if [[ $need_header == "YES" ]];
 		then
-			source $SRC/src_tf_terminal_header.sh
+			source $SRC/src-tf-terminal-header.sh
 		fi
 
 		printf "\e[K${YELLOW}%s ${RESTORE}\r" $file
