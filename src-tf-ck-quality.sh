@@ -27,24 +27,24 @@ until [[ $valid_quality == "YES" ]]; do
 	case "${codec_quality^^}" in
 		"LOW"|"MEDIUM"|"STANDARD"|"HIGH"|"PREMIUM"	)
 			valid_quality="YES"
-			source $SRC/src_tf_figlet.sh
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$output_base_dir" " accepted"
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Transcoding: " "FLAC to ${output_codec^^}"
+			source $SRC/src-tf-figlet.sh
+			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
+			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$output_lossy_dir" " accepted"
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Transcoding: " "FLAC to ${lossy_codec^^}"
 			codec_index=${codec_quality^^};;
 		"QUIT"|"EXIT"	)
 			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $codec_quality."
 			exit;;
 		"-H"|"--HELP"▷⋅⋅)
-			source $SRC/src_tf_help.sh
+			source $SRC/src-tf-help.sh
 			exit;;
 		*	)
 			if [[ $codec_quality != "" ]]
 			then
-				source $SRC/src_tf_figlet.sh
-				printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
-				printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$output_base_dir" " accepted"
-				printf "${RED}%s${YELLOW}%s\n" "Transcoding: " "FLAC to ${output_codec^^}"
+				source $SRC/src-tf-figlet.sh
+				printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
+				printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$output_lossy_dir" " accepted"
+				printf "${RED}%s${YELLOW}%s\n" "Transcoding: " "FLAC to ${lossy_codec^^}"
 				printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid CODEC QUALITY: " "$codec_quality"
 			fi
 			printf "${GREEN}%s\n" "Please enter desired CODEC QUALITY"

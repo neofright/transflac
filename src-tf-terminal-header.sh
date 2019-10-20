@@ -21,11 +21,11 @@ esac
 
 need_header="NO"
 
-source $SRC/src_tf_figlet.sh
+source $SRC/src-tf-figlet.sh
 
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$input_base_dir"
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$output_base_dir"
-printf "${RED}%s${YELLOW}%s\n" "Transcoding: " "FLAC to ${output_codec^^}"
+printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$input_flac_dir"
+printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$output_lossy_dir"
+printf "${RED}%s${YELLOW}%s\n" "Transcoding: " "FLAC to ${lossy_codec^^}"
 printf "${RED}%s${YELLOW}%s\n\n" "Quality Setting: " "$codec_index"
 printf "${LBLUE}%s${LGRAY}%s${GREEN}%s${LBLUE}%s${RESTORE}\n\n" "***" " $total_flac " "FLAC files are being processed " "***"
 

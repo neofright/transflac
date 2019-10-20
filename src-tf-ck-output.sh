@@ -22,38 +22,38 @@ esac
 
 until [[ $valid_output == "YES" ]]; do
 
-	case $output_base_dir in
-		*[!/]*/) output_base_dir=${output_base_dir%"${output_base_dir##*[!/]}"};;
+	case $output_lossy_dir in
+		*[!/]*/) output_lossy_dir=${output_lossy_dir%"${output_lossy_dir##*[!/]}"};;
 	esac
 
-	case ${output_base_dir^^} in
+	case ${output_lossy_dir^^} in
 		"QUIT"|"EXIT"	)
-			printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $output_base_dir."
+			printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $output_lossy_dir."
 			exit;;
 		"-H"|"--HELP"	)
-			source $SRC/src_tf_help.sh
+			source $SRC/src-tf-help.sh
 			exit;;
 		esac
 
-	mkdir_output=$(mkdir $output_base_dir 2>&1 > /dev/null)
+	mkdir_output=$(mkdir $output_lossy_dir 2>&1 > /dev/null)
 
 	if [[ $mkdir_output != *"No such file"* ]] && \
 	[[ $mkdir_output != *"missing"* ]];
 	then
 		valid_output="YES"
-		source $SRC/src_tf_figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$output_base_dir" " accepted"
+		source $SRC/src-tf-figlet.sh
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$output_lossy_dir" " accepted"
 	else
 		valid_output="NO"
-		if [[ $output_base_dir != "" ]]
+		if [[ $output_lossy_dir != "" ]]
 		then
-			source $SRC/src_tf_figlet.sh
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid Output Directory:  " "$output_base_dir"
+			source $SRC/src-tf-figlet.sh
+			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid Output Directory:  " "$output_lossy_dir"
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter output directory and press"
-		read -e -p "[ENTER]:  " output_base_dir output_codec codec_quality
+		read -e -p "[ENTER]:  " output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"
 	fi
 

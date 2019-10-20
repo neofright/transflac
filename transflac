@@ -24,7 +24,7 @@ then
 	source $HOME/.transflac.conf
 fi
 
-source $SRC/src_tf_set_colors.sh
+source $SRC/src-tf-set-colors.sh
 
 valid_codec="NO"
 valid_quality="NO"
@@ -32,13 +32,13 @@ valid_dir="NO"
 valid_output="NO"
 need_header="YES"
 
-source $SRC/src_tf_ck_input.sh
-source $SRC/src_tf_ck_output.sh
-source $SRC/src_tf_ck_codec.sh
-source $SRC/src_tf_ck_quality.sh
-source $SRC/src_tf_codec_quality_table.sh
+source $SRC/src-tf-ck-input.sh
+source $SRC/src-tf-ck-output.sh
+source $SRC/src-tf-ck-codec.sh
+source $SRC/src-tf-ck-quality.sh
+source $SRC/src-tf-quality-table.sh
 
-find $input_base_dir -print0 | while IFS= read -r -d '' file
+find $input_flac_dir -print0 | while IFS= read -r -d '' file
 do
 
 	filedir=${file%/*}
@@ -46,19 +46,19 @@ do
 	filename=${full_filename%.*}
 	filetype=${full_filename##*.}
 
-	if [ "$filedir/" == "$input_base_dir" ];
+	if [ "$filedir/" == "$input_flac_dir" ];
 	then
 		filedir=""
 	else
-		filedir=${filedir#$input_base_dir}
+		filedir=${filedir#$input_flac_dir}
 	fi
 
-	if [ ! -d "$output_base_dir$filedir" ]; 
+	if [ ! -d "$output_lossy_dir$filedir" ]; 
 	then
-		mkdir "$output_base_dir$filedir"
+		mkdir "$output_lossy_dir$filedir"
 	fi
 
-	source $SRC/src_tf_codec.sh
+	source $SRC/src-tf-codec.sh
 
 done
 
@@ -68,7 +68,7 @@ then
 fi
 
 printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
-rsync -avzq --include '*/' --include '*.jpg' --exclude '*' $input_base_dir"/" $output_base_dir"/"
+rsync -avzq --include '*/' --include '*.jpg' --exclude '*' $input_flac_dir"/" $output_lossy_dir"/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
 

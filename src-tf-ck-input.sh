@@ -21,39 +21,39 @@ esac
 
 until [[ $valid_dir == "YES" ]]; do
 
-	case $input_base_dir in
-		*[!/]*/) input_base_dir=${input_base_dir%"${input_base_dir##*[!/]}"};;
+	case $input_flac_dir in
+		*[!/]*/) input_flac_dir=${input_flac_dir%"${input_flac_dir##*[!/]}"};;
 	esac
 
 
-	case ${input_base_dir^^} in
+	case ${input_flac_dir^^} in
 		"QUIT"|"EXIT"	)
-		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $input_base_dir."
+		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $input_flac_dir."
 		exit;;
 	"-H"|"--HELP"	)
-		source $SRC/src_tf_help.sh
+		source $SRC/src-tf-help.sh
 		exit;;
 esac
 
-	flac_count=$( find $input_base_dir 2>/dev/null | grep -c .flac )
+	flac_count=$( find $input_flac_dir 2>/dev/null | grep -c .flac )
 	total_flac=$flac_count
 
-	if [[ -d $input_base_dir && $flac_count -gt 0 ]];
+	if [[ -d $input_flac_dir && $flac_count -gt 0 ]];
 	then
 		valid_dir="YES"
-		source $SRC/src_tf_figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
+		source $SRC/src-tf-figlet.sh
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
 	else
 		clear
 		printf "${BLUE}${BOLD}"
 		( figlet TransFLAC )
 		printf "${RESTORE}"
-		if [[ $input_base_dir != "" ]];
+		if [[ $input_flac_dir != "" ]];
 		then
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid FLAC Directory:  " "$input_base_dir"
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid FLAC Directory:  " "$input_flac_dir"
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter input FLAC directory and press"
-		read -e -p "[ENTER]:  " input_base_dir output_base_dir output_codec codec_quality
+		read -e -p "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"
 	fi
 
