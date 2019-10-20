@@ -42,7 +42,7 @@ esac
 	then
 		valid_dir="YES"
 		source $SRC/src_tf_figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
 	else
 		clear
 		printf "${BLUE}${BOLD}"
@@ -50,10 +50,10 @@ esac
 		printf "${RESTORE}"
 		if [[ $input_base_dir != "" ]];
 		then
-			printf "${RED}%s${YELLOW}%s\n" "Invalid FLAC Directory:  " "$input_base_dir"
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid FLAC Directory:  " "$input_base_dir"
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter input FLAC directory and press"
-		read -e -p "[ENTER]:  " input_base_dir output_base_dir output_codec
+		read -e -p "[ENTER]:  " input_base_dir output_base_dir output_codec codec_quality
 		printf "${RESTORE}\n"
 	fi
 

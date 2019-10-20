@@ -21,7 +21,7 @@ esac
 
 printf "%s\n" "This is transflac v$version" \
 " " \
-"USAGE: transflac [input_flac_directory] [output_lossy_directory] [lossy_codec]" \
+"USAGE: transflac [input_flac_directory] [output_lossy_directory] [lossy_codec] [codec_quality]" \
 "       transflac quit     - Immediately exit script" \
 "       transflac exit     - Immediately exit script" \
 "       transflac -h       - Display HELP" \
@@ -35,6 +35,6 @@ printf "%s\n" "This is transflac v$version" \
 "              If you have customized options in "$HOME"/.transflac.conf" \
 "              those values will be substituted." \
 " " \
-"       transflac [input_flac_directory] [output_lossy_directory] [lossy_codec]" \
+"       transflac [input_flac_directory] [output_lossy_directory] [lossy_codec] [codec_quality]" \
 "              transflac processing will proceed with the options entered on the command line."
 return

@@ -15,18 +15,37 @@
 
 case $BASH_SOURCE in
 	$0	)
-		printf "%s\nScript must be invoked via source command\nExiting\n"
-		exit;;
+		printf "%sScript must be invoked via source command\n"
+		printf "%sExiting\n"
+	exit;;
 esac
 
-need_header="NO"
+declare -A OPUS
+OPUS["LOW"]="48"
+OPUS["MEDIUM"]="64"
+OPUS["STANDARD"]="96"
+OPUS["HIGH"]="128"
+OPUS["PREMIUM"]="192"
 
-source $SRC/src_tf_figlet.sh
+declare -A OGG
+OGG["LOW"]="1"
+OGG["MEDIUM"]="2"
+OGG["STANDARD"]="3"
+OGG["HIGH"]="4"
+OGG["PREMIUM"]="5"
 
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$input_base_dir"
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$output_base_dir"
-printf "${RED}%s${YELLOW}%s\n" "Transcoding: " "FLAC to ${output_codec^^}"
-printf "${RED}%s${YELLOW}%s\n\n" "Quality Setting: " "$codec_index"
-printf "${LBLUE}%s${LGRAY}%s${GREEN}%s${LBLUE}%s${RESTORE}\n\n" "***" " $total_flac " "FLAC files are being processed " "***"
+declare -A AAC
+AAC["LOW"]="1"
+AAC["MEDIUM"]="2"
+AAC["STANDARD"]="3"
+AAC["HIGH"]="4"
+AAC["PREMIUM"]="5"
+
+declare -A MP3
+MP3["LOW"]="8"
+MP3["MEDIUM"]="7"
+MP3["STANDARD"]="6"
+MP3["HIGH"]="5"
+MP3["PREMIUM"]="4"
 
 return

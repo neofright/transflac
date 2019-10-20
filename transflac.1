@@ -45,13 +45,36 @@ This value is case sensitive.
 .B output_codec=""
 Specifies the lossy codec which will be used to convert the FLAC
 audio files.  Default value is "$3" which is arg3 from the command line
-invocation.  This value is NOT case sensitive.  It will be converted to
-upper case in all instances.
+invocation.  This value is NOT case sensitive.
+OPUS generally will provide the best sound quality for a given filesize
+or bitrate - and is the recommended codec.
+.br
+Valid values are: OPUS | OGG | AAC | MP3
+.TP
+.B codec_quality=""
+Specifies the quality preset which will be used to encode the lossy
+audio files.  Default value is "$4" which is arg4 from the command line
+invocation.  This value is NOT case sensitive.
+OPUS STANDARD quality provides Full bandwidth stereo music,
+good quality approaching transparency - and is the recommended
+setting.
+.br
+Valid values are: LOW | MEDIUM | STANDARD | HIGH | PREMIUM
+.TS
+allbox,tab(@);
+c c c c c c
+l r r r r r .
+CODEC@LOW@MEDIUM@STANDARD@HIGH@PREMIUM
+OPUS@48 kbps@64 kbps@96 kbps@128 kbps@192 kbps
+OGG@80 kbps@96 kbps@112 kbps@128 kbps@160 kbps
+AAC@40 kbps@80 kbps@96 kbps@128 kbps@224 kbps
+MP3@85 kbps@100 kbps@115 kbps@130 kbps@165 kbps
+.TE
 .SH EXAMPLES
 Possible ways one can call \fBtransflac\fR:
 .TP
 .B transflac
-You will be prompted to enter all options.  If you have customized
+"You will be prompted to enter all options.  If you have customized
 options in $HOME/.transflac.conf those values will be substituted.
 .TP
 .B transflac [input_directory] [output_directory] [lossy_codec]

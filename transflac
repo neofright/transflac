@@ -27,6 +27,7 @@ fi
 source $SRC/src_tf_set_colors.sh
 
 valid_codec="NO"
+valid_quality="NO"
 valid_dir="NO"
 valid_output="NO"
 need_header="YES"
@@ -34,6 +35,8 @@ need_header="YES"
 source $SRC/src_tf_ck_input.sh
 source $SRC/src_tf_ck_output.sh
 source $SRC/src_tf_ck_codec.sh
+source $SRC/src_tf_ck_quality.sh
+source $SRC/src_tf_codec_quality_table.sh
 
 find $input_base_dir -print0 | while IFS= read -r -d '' file
 do

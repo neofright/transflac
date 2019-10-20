@@ -42,16 +42,18 @@ until [[ $valid_output == "YES" ]]; do
 	then
 		valid_output="YES"
 		source $SRC/src_tf_figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n" "OUTPUT " "Directory " "$output_base_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$output_base_dir" " accepted"
 	else
 		valid_output="NO"
 		if [[ $output_base_dir != "" ]]
 		then
-			printf "${RED}%s${YELLOW}%s\n" "Invalid Output Directory:  " "$output_base_dir"
+			source $SRC/src_tf_figlet.sh
+			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_base_dir" " accepted"
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid Output Directory:  " "$output_base_dir"
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter output directory and press"
-		read -p "[ENTER]:  " output_base_dir output_codec
+		read -e -p "[ENTER]:  " output_base_dir output_codec codec_quality
 		printf "${RESTORE}\n"
 	fi
 
