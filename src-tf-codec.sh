@@ -19,7 +19,7 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-case "${output_codec^^}" in
+case "${lossy_codec^^}" in
 	"OPUS"	)
 			codec_filetype="opus";;
 	"OGG"	)
@@ -30,7 +30,7 @@ case "${output_codec^^}" in
 			codec_filetype="mp3";;
 esac
 
-if [[ "$filetype" = "flac" ]] && [[ $file -nt $output_base_dir$filedir"/"$filename"."${codec_filetype} ]];
+if [[ "$filetype" = "flac" ]] && [[ $file -nt $output_lossy_dir$filedir"/"$filename"."${codec_filetype} ]];
 then
 	
 	if [[ $need_header == "NO" ]];
@@ -42,21 +42,21 @@ then
 	flac_count=$(( flac_count-1 ))
 	printf "${LGREY} %5s:  ${CYAN}%s ${RESTORE}\n" $flac_count $filename
 
-	case "${output_codec^^}" in
+	case "${lossy_codec^^}" in
 		"OPUS"	)
 			opusenc --quiet --bitrate ${OPUS[$codec_index]} \
-				$file $output_base_dir$filedir"/"$filename"."$codec_filetype;;
+				$file $output_lossy_dir$filedir"/"$filename"."$codec_filetype;;
 		"OGG"	)
 			oggenc --quality ${OGG[$codec_index]} \
-				--quiet $file -o $output_base_dir$filedir"/"$filename"."$codec_filetype;;
+				--quiet $file -o $output_lossy_dir$filedir"/"$filename"."$codec_filetype;;
 		"AAC"	)
 			ffmpeg -nostats -loglevel 0 -i "$file" \
 				-c:a libfdk_aac -vbr ${AAC[$codec_index]} \
-				$output_base_dir$filedir"/"$filename"."$codec_filetype </dev/null;;
+				$output_lossy_dir$filedir"/"$filename"."$codec_filetype </dev/null;;
 		"MP3"	)
 			ffmpeg -nostats -loglevel 0 -i "$file" \
 				-aq ${MP3[$codec_index]} \
-				$output_base_dir$filedir"/"$filename"."$codec_filetype </dev/null;;
+				$output_lossy_dir$filedir"/"$filename"."$codec_filetype </dev/null;;
 	esac
 
 else
