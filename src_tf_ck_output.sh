@@ -27,7 +27,7 @@ until [[ $valid_output == "YES" ]]; do
 	esac
 
 	case ${output_base_dir^^} in
-		"QUIT"|"EXIT"▷⋅⋅)
+		"QUIT"|"EXIT"	)
 			printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $output_base_dir."
 			exit;;
 		"-H"|"--HELP"	)
