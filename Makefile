@@ -1,14 +1,14 @@
-package_name = transflac
-package_version = 1.0.0
+package-name = transflac
+package-version = 1.0.0
 INSTALL = /usr/bin/install -c
 
 prefix = /usr/local
-exec_prefix = $(prefix)
-bindir = $(exec_prefix)/bin
-libexecdir = $(prefix)/libexec/$(package_name)
+exec-prefix = $(prefix)
+bindir = $(exec-prefix)/bin
+libexecdir = $(prefix)/libexec/$(package-name)
 sysconfdir = /etc
 datarootdir = $(prefix)/share
-docdir = $(datarootdir)/doc/$(package_name)
+docdir = $(datarootdir)/doc/$(package-name)
 mandir = $(datarootdir)/man
 DESTDIR =
 
@@ -20,16 +20,16 @@ install:
 	$(INSTALL) -d -m 755 $(DESTDIR)$(bindir)
 	$(INSTALL) -m 755 transflac $(DESTDIR)$(bindir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_set_colors.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_ck_codec.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_ck_input.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_ck_output.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_ck_quality.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_codec.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_figlet.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_terminal_header.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_codec_quality_table.sh $(DESTDIR)$(libexecdir)
-	$(INSTALL) -m 644 src_tf_help.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-set-colors.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-ck-codec.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-ck-input.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-ck-output.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-ck-quality.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-codec.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-figlet.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-terminal-header.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-quality-table.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-help.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(sysconfdir)
 	$(INSTALL) -m 644 transflac.conf $(DESTDIR)$(sysconfdir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(docdir)
@@ -41,16 +41,16 @@ uninstall:
 
 	-rm -v \
 	$(DESTDIR)$(bindir)/transflac \
-	$(DESTDIR)$(libexecdir)/src_tf_set_colors.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_ck_codec.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_ck_input.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_ck_output.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_ck_quality.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_codec.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_help.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_figlet.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_terminal_header.sh \
-	$(DESTDIR)$(libexecdir)/src_tf_codec_quality_table.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-set-colors.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-ck-codec.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-ck-input.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-ck-output.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-ck-quality.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-codec.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-help.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-figlet.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-terminal-header.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-quality-table.sh \
 	$(DESTDIR)$(sysconfdir)/transflac.conf \
 	$(DESTDIR)$(docdir)/LICENSE.md \
 	$(DESTDIR)$(docdir)/README.md \
