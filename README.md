@@ -1,11 +1,11 @@
-Utilities for FLAC encoded files
-================================
+TransFLAC - Convert FLAC to Lossy Codecs
+========================================
 
-Various utilities and configuration samples to assist with use and
-management of FLAC encoded files.
+Various utilities and configuration samples to assist with the conversion of
+FLAC based music collections into lossy formats.
 
 Additional information concerning listed utilities and sample configurations
-can be found at The Shiny Object Blog:  http://tso.bzb.us
+can be found in the TransFLAC Wiki located:  https://bitbucket.org/gbcox/transflac/wiki/Home
 
 Licensed under GNU GPL version 3
 
