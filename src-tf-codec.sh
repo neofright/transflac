@@ -19,11 +19,6 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-while [[ $( pgrep -c ${process_name[$LOSSY_CODEC]} ) -ge $NUMCPU ]];
-	do
-		sleep 1s
-	done
-
 if [[ "$filetype" = "flac" ]] && [[ $file -nt $output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} ]];
 then
 	
@@ -35,6 +30,11 @@ then
 
 	flac_count=$(( flac_count-1 ))
 	printf "${LGREY} %5s:  ${CYAN}%s ${RESTORE}\n" $flac_count $filename
+
+	while [[ $( pgrep -c ${process_name[$LOSSY_CODEC]} ) -ge $NUMCPU ]];
+	do
+		sleep 1s
+	done
 
 	case "$LOSSY_CODEC" in
 		"OPUS"	)
