@@ -18,6 +18,7 @@
 version="1.0.0"
 
 source /etc/transflac.conf
+echo $NUMCPU "numcpu"
 
 if [ -f "$HOME/.transflac.conf" ];
 then
@@ -36,7 +37,7 @@ source $SRC/src-tf-ck-input.sh
 source $SRC/src-tf-ck-output.sh
 source $SRC/src-tf-ck-codec.sh
 source $SRC/src-tf-ck-quality.sh
-source $SRC/src-tf-quality-table.sh
+source $SRC/src-tf-table.sh
 
 find $input_flac_dir -print0 | while IFS= read -r -d '' file
 do
@@ -53,11 +54,11 @@ do
 		filedir=${filedir#$input_flac_dir}
 	fi
 
-	if [ ! -d "$output_lossy_dir$filedir" ]; 
+	if [ ! -d "$output_lossy_dir$filedir" ] && [ $filedir != ${input_flac_dir%/*} ] ; 
 	then
 		mkdir "$output_lossy_dir$filedir"
 	fi
-
+	
 	source $SRC/src-tf-codec.sh
 
 done
@@ -67,7 +68,25 @@ then
 	printf "${RESTORE}\n"
 fi
 
-printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
+total_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
+remaining_processes=$total_processes
+
+until [[ $remaining_processes -eq "0" ]];
+do
+	remaining_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
+	if [[ $remaining_processes -gt $total_processes ]];
+	then	
+		remaining_processes=$total_processes
+	fi
+	processes_complete=$(( $total_processes-$remaining_processes ))
+	percent_complete=$(bc <<< "scale=2;($processes_complete/$total_processes)*100")
+	percent_complete=${percent_complete%.*}
+
+	source $SRC/src-tf-progress-bar.sh $processes_complete $total_processes
+	sleep 1s
+done
+
+printf "${YELLOW}%s\n\nSyncing all folder.jpg files...\n"
 rsync -avzq --include '*/' --include '*.jpg' --exclude '*' $input_flac_dir"/" $output_lossy_dir"/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
 printf "${RESTORE}\n"

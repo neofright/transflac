@@ -19,18 +19,12 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-case "${lossy_codec^^}" in
-	"OPUS"	)
-			codec_filetype="opus";;
-	"OGG"	)
-			codec_filetype="ogg";;
-	"AAC"	)
-			codec_filetype="m4a";;
-	"MP3"	)
-			codec_filetype="mp3";;
-esac
+while [[ $( pgrep -c ${process_name[$LOSSY_CODEC]} ) -ge $NUMCPU ]];
+	do
+		sleep 1s
+	done
 
-if [[ "$filetype" = "flac" ]] && [[ $file -nt $output_lossy_dir$filedir"/"$filename"."${codec_filetype} ]];
+if [[ "$filetype" = "flac" ]] && [[ $file -nt $output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} ]];
 then
 	
 	if [[ $need_header == "NO" ]];
@@ -42,21 +36,21 @@ then
 	flac_count=$(( flac_count-1 ))
 	printf "${LGREY} %5s:  ${CYAN}%s ${RESTORE}\n" $flac_count $filename
 
-	case "${lossy_codec^^}" in
+	case "$LOSSY_CODEC" in
 		"OPUS"	)
-			opusenc --quiet --bitrate ${OPUS[$codec_index]} \
-				$file $output_lossy_dir$filedir"/"$filename"."$codec_filetype;;
+			opusenc --quiet --bitrate ${quality_opus[$CODEC_QUALITY]} \
+				$file $output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
 		"OGG"	)
-			oggenc --quality ${OGG[$codec_index]} \
-				--quiet $file -o $output_lossy_dir$filedir"/"$filename"."$codec_filetype;;
+			oggenc --quality ${quality_ogg[$CODEC_QUALITY]} \
+				--quiet $file -o $output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
 		"AAC"	)
-			ffmpeg -nostats -loglevel 0 -i "$file" \
-				-c:a libfdk_aac -vbr ${AAC[$codec_index]} \
-				$output_lossy_dir$filedir"/"$filename"."$codec_filetype </dev/null;;
+			ffmpeg -nostats -loglevel 0 -i $file \
+				-c:a libfdk_aac -vbr ${quality_aac[$CODEC_QUALITY]} \
+				$output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
 		"MP3"	)
-			ffmpeg -nostats -loglevel 0 -i "$file" \
-				-aq ${MP3[$codec_index]} \
-				$output_lossy_dir$filedir"/"$filename"."$codec_filetype </dev/null;;
+			ffmpeg -nostats -loglevel 0 -i $file \
+				-aq ${quality_mp3[$CODEC_QUALITY]} \
+				$output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
 	esac
 
 else

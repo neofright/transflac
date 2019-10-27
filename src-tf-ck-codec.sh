@@ -36,10 +36,11 @@ until [[ $valid_codec == "YES" ]]; do
 	case "${lossy_codec^^}" in
 		$codecs	)
 			valid_codec="YES"
+			LOSSY_CODEC=${lossy_codec^^}
 			source $SRC/src-tf-figlet.sh
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$output_lossy_dir" " accepted"
-			printf "${RED}%s${YELLOW}%s\n${RESTORE}\n" "Transcoding: " "FLAC to ${lossy_codec^^}";;
+			printf "${RED}%s${YELLOW}%s\n${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC";;
 		"QUIT"|"EXIT"	)
 			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $lossy_codec."
 			exit;;

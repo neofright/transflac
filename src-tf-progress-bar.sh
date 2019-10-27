@@ -1,4 +1,4 @@
-# Copyright © 2015-2019 Gerald B. Cox
+# Copyright © 2017-2019 Gerald B. Cox
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,39 +13,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-case $BASH_SOURCE in
-	$0	)
-		printf "%sScript must be invoked via source command\n"
-		printf "%sExiting\n"
-	exit;;
-esac
+let _progress=(${1}*100/${2}*100)/100
+let _done=(${_progress}*5)/10
+let _left=50-$_done
+# Build progressbar string lengths
+_fill=$(printf "%${_done}s")
+_empty=$(printf "%${_left}s")
 
-declare -A OPUS
-OPUS["LOW"]="48"
-OPUS["MEDIUM"]="64"
-OPUS["STANDARD"]="96"
-OPUS["HIGH"]="128"
-OPUS["PREMIUM"]="192"
-
-declare -A OGG
-OGG["LOW"]="1"
-OGG["MEDIUM"]="2"
-OGG["STANDARD"]="3"
-OGG["HIGH"]="4"
-OGG["PREMIUM"]="5"
-
-declare -A AAC
-AAC["LOW"]="1"
-AAC["MEDIUM"]="2"
-AAC["STANDARD"]="3"
-AAC["HIGH"]="4"
-AAC["PREMIUM"]="5"
-
-declare -A MP3
-MP3["LOW"]="8"
-MP3["MEDIUM"]="7"
-MP3["STANDARD"]="6"
-MP3["HIGH"]="5"
-MP3["PREMIUM"]="4"
+printf "${BLUE}\rCompleting $1 "of" $2 Processes:  [${_fill// /#}${_empty// /-}] ${_progress}%%"
 
 return
