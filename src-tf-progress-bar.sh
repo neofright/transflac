@@ -20,6 +20,6 @@ let _left=50-$_done
 _fill=$(printf "%${_done}s")
 _empty=$(printf "%${_left}s")
 
-printf "${BLUE}\rCompleting $1 "of" $2 Processes:  [${_fill// /#}${_empty// /-}] ${_progress}%%"
+printf "${BLUE}\rCompleted $1 "of" $2 Processes:  [${_fill// /#}${_empty// /-}] ${_progress}%%"
 
 return
