@@ -42,7 +42,10 @@ until [[ $valid_codec == "YES" ]]; do
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$output_lossy_dir" " accepted"
 			printf "${RED}%s${YELLOW}%s\n${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC";;
 		"QUIT"|"EXIT"	)
-			rmdir $output_lossy_dir &> /dev/null
+			if [[ $output_dir_existed == "NO" ]];
+			then
+				rmdir $output_lossy_dir &> /dev/null
+			fi
 			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $lossy_codec."
 			exit;;
 		"-H"|"--HELP"▷⋅⋅)

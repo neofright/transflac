@@ -34,7 +34,10 @@ until [[ $valid_quality == "YES" ]]; do
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Quality Setting: " "$CODEC_QUALITY";;
 		"QUIT"|"EXIT"	)
-			rmdir $output_lossy_dir &> /dev/null
+			if [[ $output_dir_existed == "NO" ]];
+			then
+				rmdir $output_lossy_dir &> /dev/null
+			fi
 			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $codec_quality."
 			exit;;
 		"-H"|"--HELP"▷⋅⋅)
