@@ -38,9 +38,14 @@ until [[ $valid_output == "YES" ]]; do
 	mkdir_output=$(mkdir $output_lossy_dir 2>&1 > /dev/null)
 
 	if [[ $mkdir_output != *"No such file"* ]] && \
-	[[ $mkdir_output != *"missing"* ]];
+		[[ $mkdir_output != *"missing"* ]] && \
+		[[ $mkdir_output != *"Permission denied"* ]];
 	then
 		valid_output="YES"
+		if [[ ${output_lossy_dir:0:1} != "/" ]];
+		then
+			output_lossy_dir=$PWD"/"$output_lossy_dir
+		fi
 		source $SRC/src-tf-figlet.sh
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$output_lossy_dir" " accepted"

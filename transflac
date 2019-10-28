@@ -18,7 +18,6 @@
 version="1.0.0"
 
 source /etc/transflac.conf
-echo $NUMCPU "numcpu"
 
 if [ -f "$HOME/.transflac.conf" ];
 then
