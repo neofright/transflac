@@ -34,16 +34,17 @@ until [[ $valid_output == "YES" ]]; do
 			source $SRC/src-tf-help.sh
 			exit;;
 		esac
-	
+
 	if [ -d "$output_lossy_dir" ];
 	then
 		output_dir_existed="YES"
-	else
+	elif [[ $output_lossy_dir != "" ]];
+	then
 		mkdir_output=$(mkdir $output_lossy_dir 2>&1 > /dev/null)
 		output_dir_existed="NO"
 	fi
 
-	if [[ $mkdir_output == "" ]]
+	if [[ $mkdir_output == "" ]] && [[ $output_dir_existed="YES" ]] && [[ $output_lossy_dir != "" ]];
 	then
 		valid_output="YES"
 		if [[ ${output_lossy_dir:0:1} != "/" ]];
@@ -59,8 +60,11 @@ until [[ $valid_output == "YES" ]]; do
 		mkdir_error=${mkdir_error%%$'\n'*}
 		source $SRC/src-tf-figlet.sh
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
-		printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid Output Directory:  " "$output_lossy_dir"
-		printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Error Description:  " "$mkdir_error"
+		if [[ $output_lossy_dir != "" ]]
+		then
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid Output Directory:  " "$output_lossy_dir"
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Error Description:  " "$mkdir_error"
+		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter output directory and press"
 		read -e -p "[ENTER]:  " output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"

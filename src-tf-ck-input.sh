@@ -35,7 +35,7 @@ until [[ $valid_dir == "YES" ]]; do
 		exit;;
 esac
 
-	flac_count=$( find $input_flac_dir 2>/dev/null | grep -c .flac )
+	flac_count=$( find $input_flac_dir 2>/dev/null | grep -c "\.flac" )
 	total_flac=$flac_count
 
 	if [[ -d $input_flac_dir && $flac_count -gt 0 ]];
