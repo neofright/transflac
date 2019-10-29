@@ -50,7 +50,7 @@ esac
 		printf "${RESTORE}"
 		if [[ $input_flac_dir != "" ]];
 		then
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid FLAC Directory:  " "$input_flac_dir"
+			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid FLAC Directory:  " "$input_flac_dir"
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter input FLAC directory and press"
 		read -e -p "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality

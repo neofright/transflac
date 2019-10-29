@@ -59,8 +59,8 @@ until [[ $valid_output == "YES" ]]; do
 		mkdir_error=${mkdir_output##*: }
 		mkdir_error=${mkdir_error%%$'\n'*}
 		source $SRC/src-tf-figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
-		if [[ $output_lossy_dir != "" ]]
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
+		if [[ $output_lossy_dir != "" ]];
 		then
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid Output Directory:  " "$output_lossy_dir"
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Error Description:  " "$mkdir_error"
