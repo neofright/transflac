@@ -34,13 +34,15 @@ Specifies the directory starting point which will be recursively
 search for FLAC audio files.  All FLAC audio files in the directory
 structure will be converted to the specified lossy codec.
 Default value is "$1" which is arg1 from the command line invocation.
-This value is case sensitive.
+This value is case sensitive.  Any symlinks that are encountered will be
+resolved and the physical path will be displayed.
 .TP
 .B output_lossy_dir=""
 Specifies the target directory which will be used to store the lossy
 audio files which are created during the conversion process.
 Default value is "$2" which is arg2 from the command line invocation.
-This value is case sensitive.
+This value is case sensitive.  Any symlinks that are encounted will be
+resolved and the physical path will be displayed.
 .TP
 .B lossy_codec=""
 Specifies the lossy codec which will be used to convert the FLAC
