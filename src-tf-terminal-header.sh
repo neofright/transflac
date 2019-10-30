@@ -23,8 +23,8 @@ need_header="NO"
 
 source $SRC/src-tf-figlet.sh
 
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$input_flac_dir"
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$output_lossy_dir"
+printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$rp_input_flac_dir"
+printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$rp_output_lossy_dir"
 printf "${RED}%s${YELLOW}%s\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
 printf "${RED}%s${YELLOW}%s\n\n" "Quality Setting: " "$CODEC_QUALITY"
 printf "${LBLUE}%s${LGRAY}%s${GREEN}%s${LBLUE}%s${RESTORE}\n\n" "***" " $total_flac " "FLAC files are being processed " "***"

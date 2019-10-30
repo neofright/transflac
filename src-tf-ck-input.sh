@@ -35,14 +35,16 @@ until [[ $valid_dir == "YES" ]]; do
 		exit;;
 esac
 
-	flac_count=$( find $input_flac_dir 2>/dev/null | grep -c "\.flac" )
+	rp_input_flac_dir=$( realpath -Pq $input_flac_dir 2>/dev/null )
+
+	flac_count=$( find $rp_input_flac_dir 2>/dev/null | grep -c "\.flac" )
 	total_flac=$flac_count
 
-	if [[ -d $input_flac_dir && $flac_count -gt 0 ]];
+	if [[ -d $rp_input_flac_dir && $flac_count -gt 0 ]];
 	then
 		valid_dir="YES"
 		source $SRC/src-tf-figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 	else
 		clear
 		printf "${BLUE}${BOLD}"

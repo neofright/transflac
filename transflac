@@ -38,7 +38,7 @@ source $SRC/src-tf-ck-codec.sh
 source $SRC/src-tf-ck-quality.sh
 source $SRC/src-tf-table.sh
 
-find $input_flac_dir -print0 | while IFS= read -r -d '' file
+find $rp_input_flac_dir -print0 | while IFS= read -r -d '' file
 do
 
 	filedir=${file%/*}
@@ -46,16 +46,16 @@ do
 	filename=${full_filename%.*}
 	filetype=${full_filename##*.}
 
-	if [ "$filedir/" == "$input_flac_dir" ];
+	if [ "$filedir/" == "$rp_input_flac_dir" ];
 	then
 		filedir=""
 	else
-		filedir=${filedir#$input_flac_dir}
+		filedir=${filedir#$rp_input_flac_dir}
 	fi
 
-	if [ ! -d "$output_lossy_dir$filedir" ] && [ $filedir != ${input_flac_dir%/*} ] ; 
+	if [ ! -d "$rp_output_lossy_dir$filedir" ] && [ $filedir != ${rp_input_flac_dir%/*} ] ; 
 	then
-		mkdir "$output_lossy_dir$filedir"
+		mkdir "$rp_output_lossy_dir$filedir"
 	fi
 	
 	source $SRC/src-tf-codec.sh
@@ -86,7 +86,7 @@ do
 done
 
 printf "${YELLOW}%s\n\nSyncing all folder.jpg files...\n"
-rsync -avzq --include '*/' --include '*.jpg' --exclude '*' $input_flac_dir"/" $output_lossy_dir"/"
+rsync -avzq --include '*/' --include '*.jpg' --exclude '*' $rp_input_flac_dir"/" $rp_output_lossy_dir"/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
 

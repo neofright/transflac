@@ -34,32 +34,30 @@ until [[ $valid_output == "YES" ]]; do
 			source $SRC/src-tf-help.sh
 			exit;;
 		esac
+	
+	rp_output_lossy_dir=$( realpath -P $output_lossy_dir 2>/dev/null )
 
-	if [ -d "$output_lossy_dir" ];
+	if [ -d "$rp_output_lossy_dir" ];
 	then
 		output_dir_existed="YES"
 	elif [[ $output_lossy_dir != "" ]];
 	then
-		mkdir_output=$(mkdir $output_lossy_dir 2>&1 > /dev/null)
+		mkdir_output=$( mkdir $output_lossy_dir 2>&1 )
 		output_dir_existed="NO"
 	fi
 
 	if [[ $mkdir_output == "" ]] && [[ $output_dir_existed="YES" ]] && [[ $output_lossy_dir != "" ]];
 	then
 		valid_output="YES"
-		if [[ ${output_lossy_dir:0:1} != "/" ]];
-		then
-			output_lossy_dir=$PWD"/"$output_lossy_dir
-		fi
 		source $SRC/src-tf-figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$output_lossy_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 	else
 		valid_output="NO"
 		mkdir_error=${mkdir_output##*: }
 		mkdir_error=${mkdir_error%%$'\n'*}
 		source $SRC/src-tf-figlet.sh
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n\n" "INPUT  " "Directory " "$input_flac_dir" " accepted"
+		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 		if [[ $output_lossy_dir != "" ]];
 		then
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid Output Directory:  " "$output_lossy_dir"

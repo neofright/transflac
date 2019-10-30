@@ -19,7 +19,7 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-if [[ "$filetype" = "flac" ]] && [[ $file -nt $output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} ]];
+if [[ "$filetype" = "flac" ]] && [[ $file -nt $rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} ]];
 then
 	
 	if [[ $need_header == "NO" ]];
@@ -39,18 +39,18 @@ then
 	case "$LOSSY_CODEC" in
 		"OPUS"	)
 			opusenc --quiet --bitrate ${quality_opus[$CODEC_QUALITY]} \
-				$file $output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
+				$file $rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
 		"OGG"	)
 			oggenc --quality ${quality_ogg[$CODEC_QUALITY]} \
-				--quiet $file -o $output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
+				--quiet $file -o $rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
 		"AAC"	)
 			ffmpeg -nostats -loglevel 0 -i $file \
 				-c:a libfdk_aac -vbr ${quality_aac[$CODEC_QUALITY]} \
-				$output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
+				$rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
 		"MP3"	)
 			ffmpeg -nostats -loglevel 0 -i $file \
 				-aq ${quality_mp3[$CODEC_QUALITY]} \
-				$output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
+				$rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
 	esac
 
 else
