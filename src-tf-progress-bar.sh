@@ -13,13 +13,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-let _progress=(${1}*100/${2}*100)/100
-let _done=(${_progress}*5)/10
-let _left=50-$_done
-# Build progressbar string lengths
-_fill=$(printf "%${_done}s")
-_empty=$(printf "%${_left}s")
+let tf_progress=(${1}*100/${2}*100)/100
+let tf_finish=(${tf_progress}*5)/10
+let tf_remains=50-$tf_finish
+tf_fill=$(printf "%${tf_finish}s")
+tf_void=$(printf "%${tf_remains}s")
 
-printf "${BLUE}\rCompleted $1 "of" $2 Processes:  [${_fill// /#}${_empty// /-}] ${_progress}%%"
+printf "${BLUE}\rCompleted $1 "of" $2 Processes:  [${tf_fill// /#}${tf_void// /-}] ${tf_progress}%%"
 
 return
