@@ -34,7 +34,7 @@ install:
 	$(INSTALL) -m 644 src-tf-help.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(sysconfdir)
 	$(INSTALL) -m 644 transflac.conf $(DESTDIR)$(sysconfdir)
-	$(INSTALL) -d -m 755 $(DESTDIR)$($licensedir)
+	$(INSTALL) -d -m 755 $(DESTDIR)$(licensedir)
 	$(INSTALL) -m 644 LICENSE.md $(DESTDIR)$(licensedir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(docdir)
 	$(INSTALL) -m 644 README.md contributors.txt $(DESTDIR)$(docdir)
