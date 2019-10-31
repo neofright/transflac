@@ -34,8 +34,9 @@ install:
 	$(INSTALL) -m 644 src-tf-help.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(sysconfdir)
 	$(INSTALL) -m 644 transflac.conf $(DESTDIR)$(sysconfdir)
-	$(INSTALL) -d -m 755 $(DESTDIR)$(docdir)
+	$(INSTALL) -d -m 755 $(DESTDIR)$($licensedir)
 	$(INSTALL) -m 644 LICENSE.md $(DESTDIR)$(licensedir)
+	$(INSTALL) -d -m 755 $(DESTDIR)$(docdir)
 	$(INSTALL) -m 644 README.md contributors.txt $(DESTDIR)$(docdir)
 	$(INSTALL) -d -m 755 $(DESTDIR)$(mandir)/man1
 	$(INSTALL) -m 644 transflac.1 $(DESTDIR)$(mandir)/man1
@@ -56,7 +57,7 @@ uninstall:
 	$(DESTDIR)$(libexecdir)/src-tf-progress-bar.sh \
 	$(DESTDIR)$(libexecdir)/src-tf-table.sh \
 	$(DESTDIR)$(sysconfdir)/transflac.conf \
-	$(DESTDIR)$(licensedir)/LICENSE \
+	$(DESTDIR)$(licensedir)/LICENSE.md \
 	$(DESTDIR)$(docdir)/README.md \
 	$(DESTDIR)$(docdir)/contributors.txt \
 	$(DESTDIR)$(mandir)/man1/transflac.1
