@@ -1,6 +1,6 @@
 package-name = transflac
 package-version = 1.0.0
-INSTALL = /usr/bin/install -c
+INSTALL = /usr/bin/install -p
 
 prefix = /usr/local
 exec-prefix = $(prefix)

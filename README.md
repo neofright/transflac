@@ -7,6 +7,6 @@ FLAC based music collections into lossy formats.
 Additional information concerning listed utilities and sample configurations
 can be found in the TransFLAC Wiki located:  https://bitbucket.org/gbcox/transflac/wiki/Home
 
-Licensed under GNU GPL version 3
+Licensed under GNU GPL version 3 or later
 
 Copyright © 2015-2019 Gerald Cox (unless explicitly stated otherwise)
