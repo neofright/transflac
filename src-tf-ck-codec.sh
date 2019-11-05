@@ -52,11 +52,11 @@ until [[ $valid_codec == "YES" ]]; do
 			source $SRC/src-tf-help.sh
 			exit;;
 		*	)
+			source $SRC/src-tf-figlet.sh
+			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 			if [[ $lossy_codec != "" ]]
 				then
-				source $SRC/src-tf-figlet.sh
-				printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-				printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 				printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid Output Codec:  " "$lossy_codec"
 			fi
 			printf "${GREEN}%s\n" "Please enter desired output CODEC"

@@ -46,16 +46,13 @@ esac
 		source $SRC/src-tf-figlet.sh
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 	else
-		clear
-		printf "${BLUE}${BOLD}"
-		( figlet TransFLAC )
-		printf "${RESTORE}"
+		source $SRC/src-tf-figlet.sh
 		if [[ $input_flac_dir != "" ]];
 		then
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid FLAC Directory:  " "$input_flac_dir"
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter input FLAC directory and press"
-		read -e -p "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality
+		read -ep "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"
 	fi
 

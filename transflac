@@ -86,7 +86,7 @@ do
 done
 
 printf "${YELLOW}%s\n\nSyncing all folder.jpg files...\n"
-rsync -avzq --include '*/' --include '*.jpg' --exclude '*' $rp_input_flac_dir"/" $rp_output_lossy_dir"/"
+rsync -avzq --include '*/' --include 'folder.jpg' --exclude '*' $rp_input_flac_dir"/" $rp_output_lossy_dir"/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
 
