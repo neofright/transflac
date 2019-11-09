@@ -22,7 +22,7 @@ esac
 clear
 
 printf "${BLUE}${BOLD}"
-( figlet TransFLAC )
+( figlet -t -f standard TransFLAC )
 printf "${RESTORE}"
 
 return

@@ -54,7 +54,7 @@ then
 	esac
 
 else
-	
+
 	if [[ "$filetype" = "flac" ]];
 	then
 		flac_count=$(( flac_count-1 ))
@@ -62,14 +62,12 @@ else
 
 	if [[ -d "$file" ]];
 	then
-
 		if [[ $need_header == "YES" ]];
 		then
 			source $SRC/src-tf-terminal-header.sh
 		fi
-
-		printf "\e[K${YELLOW}%s ${RESTORE}\r" $file
-	
+		let tf_columns=$COLUMNS-1
+		printf "\e[K${YELLOW}%".$tf_columns"s ${RESTORE}\r" "..$filedir/$full_filename"
 	fi
 
 fi
