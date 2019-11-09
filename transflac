@@ -70,6 +70,11 @@ fi
 total_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
 remaining_processes=$total_processes
 
+if [[ $total_processes -gt 0 ]];
+then
+	printf "${YELLOW}%sCompleting remaining $total_processes processes...\n"
+fi
+
 until [[ $remaining_processes -eq "0" ]];
 do
 	remaining_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
@@ -85,7 +90,7 @@ do
 	sleep 1s
 done
 
-printf "${YELLOW}%s\n\nSyncing all folder.jpg files...\n"
+printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
 rsync -avzq --include '*/' --include 'folder.jpg' --exclude '*' $rp_input_flac_dir"/" $rp_output_lossy_dir"/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
