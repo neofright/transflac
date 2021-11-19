@@ -37,7 +37,7 @@ esac
 	rp_input_flac_dir="$( realpath -Pq "$input_flac_dir" 2>/dev/null )"
 
 	flac_count="$( find "$rp_input_flac_dir" 2>/dev/null | grep -ic "\.flac" )"
-	#total_flac="$flac_count"
+	total_flac="$flac_count"
 
 	if [[ -d $rp_input_flac_dir && $flac_count -gt 0 ]];
 	then
