@@ -39,7 +39,7 @@ until [[ $valid_codec == "YES" ]]; do
 			LOSSY_CODEC=${lossy_codec^^}
 			source $SRC/src-tf-figlet.sh
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_$output_lossy_dir" " accepted"
+			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 			printf "${RED}%s${YELLOW}%s\n${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC";;
 		"QUIT"|"EXIT"	)
 			if [[ $output_dir_existed == "NO" ]];
