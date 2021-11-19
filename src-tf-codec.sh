@@ -19,7 +19,7 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-if [[ "$filetype" = "flac" ]] && [[ $file -nt $rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} ]];
+if [[ "$filetype" = "flac" ]] && [[ "$file" -nt "${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" ]];
 then
 	
 	if [[ $need_header == "NO" ]];
@@ -38,19 +38,19 @@ then
 
 	case "$LOSSY_CODEC" in
 		"OPUS"	)
-			opusenc --quiet --bitrate ${quality_opus[$CODEC_QUALITY]} \
-				$file $rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
+			opusenc --quiet --bitrate "${quality_opus[$CODEC_QUALITY]}" \
+				"$file" "${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" &;;
 		"OGG"	)
-			oggenc --quality ${quality_ogg[$CODEC_QUALITY]} \
-				--quiet $file -o $rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} &;;
+			oggenc --quality "${quality_ogg[$CODEC_QUALITY]}" \
+				--quiet "$file" -o "${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" &;;
 		"AAC"	)
-			ffmpeg -nostats -loglevel 0 -i $file \
-				-c:a libfdk_aac -vbr ${quality_aac[$CODEC_QUALITY]} \
-				$rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
+			ffmpeg -nostats -loglevel 0 -i "$file" \
+				-c:a libfdk_aac -vbr "${quality_aac[$CODEC_QUALITY]}" \
+				"${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" </dev/null &;;
 		"MP3"	)
-			ffmpeg -nostats -loglevel 0 -i $file \
-				-aq ${quality_mp3[$CODEC_QUALITY]} \
-				$rp_output_lossy_dir$filedir"/"$filename"."${codec_filetype[$LOSSY_CODEC]} </dev/null &;;
+			ffmpeg -nostats -loglevel 0 -i "$file" \
+				-aq "${quality_mp3[$CODEC_QUALITY]}" \
+				"${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" </dev/null &;;
 	esac
 
 else
@@ -64,9 +64,9 @@ else
 	then
 		if [[ $need_header == "YES" ]];
 		then
-			source $SRC/src-tf-terminal-header.sh
+			source "$SRC/src-tf-terminal-header.sh"
 		fi
-		let tf_columns=$COLUMNS-1
+		tf_columns=$(( COLUMNS - 1 ))
 		printf "\e[K${YELLOW}%".$tf_columns"s ${RESTORE}\r" "..$filedir/$full_filename"
 	fi
 
