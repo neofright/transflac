@@ -24,7 +24,7 @@ then
 	source $HOME/.transflac.conf
 fi
 
-source $SRC/src-tf-set-colors.sh
+source "$SRC/src-tf-set-colors.sh"
 
 valid_codec="NO"
 valid_quality="NO"
@@ -32,37 +32,37 @@ valid_dir="NO"
 valid_output="NO"
 need_header="YES"
 
-source $SRC/src-tf-ck-input.sh
-source $SRC/src-tf-ck-output.sh
-source $SRC/src-tf-ck-codec.sh
-source $SRC/src-tf-ck-quality.sh
-source $SRC/src-tf-table.sh
+source "$SRC/src-tf-ck-input.sh"
+source "$SRC/src-tf-ck-output.sh"
+source "$SRC/src-tf-ck-codec.sh"
+source "$SRC/src-tf-ck-quality.sh"
+source "$SRC/src-tf-table.sh"
 
-find $rp_input_flac_dir -print0 | while IFS= read -r -d '' file
+find "$rp_input_flac_dir" -print0 | while IFS= read -r -d '' file
 do
 
-	filedir=${file%/*}
-	full_filename=${file##*/}
-	filename=${full_filename%.*}
-	filetype=${full_filename##*.}
+	filedir="${file%/*}"
+	full_filename="${file##*/}"
+	filename="${full_filename%.*}"
+	filetype="${full_filename##*.}"
 
-	if [ "$filedir/" == "$rp_input_flac_dir" ];
+	if [ "${filedir}/" == "${rp_input_flac_dir}" ];
 	then
 		filedir=""
 	else
-		filedir=${filedir#$rp_input_flac_dir}
+		filedir="${filedir#$rp_input_flac_dir}"
 	fi
 
-	if [ ! -d "$rp_output_lossy_dir$filedir" ] && [ $filedir != ${rp_input_flac_dir%/*} ] ; 
+	if [ ! -d "${rp_output_lossy_dir}${filedir}" ] && [ "$filedir" != "${rp_input_flac_dir%/*}" ] ; 
 	then
-		mkdir "$rp_output_lossy_dir$filedir"
+		mkdir "${rp_output_lossy_dir}${filedir}"
 	fi
 	
-	source $SRC/src-tf-codec.sh
+	source "$SRC/src-tf-codec.sh"
 
 done
 
-if [[ $need_header == "YES" ]];
+if [[ "$need_header" == "YES" ]];
 then
 	printf "${RESTORE}\n"
 fi
@@ -82,7 +82,7 @@ do
 	then	
 		remaining_processes="$total_processes"
 	fi
-	processes_complete=$(( $total_processes-$remaining_processes ))
+	processes_complete=$(( total_processes-remaining_processes ))
 	percent_complete=$(bc <<< "scale=2;($processes_complete/$total_processes)*100")
 	percent_complete=${percent_complete%.*}
 
