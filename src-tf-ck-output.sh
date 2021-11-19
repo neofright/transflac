@@ -20,7 +20,7 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-until [[ $valid_output == "YES" ]]; do
+until [[ "$valid_output" == "YES" ]]; do
 
 	case $output_lossy_dir in
 		*[!/]*/) output_lossy_dir=${output_lossy_dir%"${output_lossy_dir##*[!/]}"};;
@@ -31,16 +31,16 @@ until [[ $valid_output == "YES" ]]; do
 			printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $output_lossy_dir."
 			exit;;
 		"-H"|"--HELP"	)
-			source $SRC/src-tf-help.sh
+			source "$SRC/src-tf-help.sh"
 			exit;;
 		esac
 	
-	rp_output_lossy_dir=$( realpath -P $output_lossy_dir 2>/dev/null )
+	rp_output_lossy_dir="$( realpath -P "$output_lossy_dir" 2>/dev/null )"
 
 	if [ -d "$rp_output_lossy_dir" ];
 	then
 		output_dir_existed="YES"
-	elif [[ $output_lossy_dir != "" ]];
+	elif [[ "$output_lossy_dir" != "" ]];
 	then
 		mkdir_output=$( mkdir $output_lossy_dir 2>&1 )
 		output_dir_existed="NO"
@@ -49,16 +49,16 @@ until [[ $valid_output == "YES" ]]; do
 	if [[ $mkdir_output == "" ]] && [[ $output_dir_existed="YES" ]] && [[ $output_lossy_dir != "" ]];
 	then
 		valid_output="YES"
-		source $SRC/src-tf-figlet.sh
+		source "$SRC/src-tf-figlet.sh"
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 	else
 		valid_output="NO"
-		mkdir_error=${mkdir_output##*: }
-		mkdir_error=${mkdir_error%%$'\n'*}
-		source $SRC/src-tf-figlet.sh
+		mkdir_error="${mkdir_output##*: }"
+		mkdir_error="${mkdir_error%%$'\n'*}"
+		source "$SRC/src-tf-figlet.sh"
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-		if [[ $output_lossy_dir != "" ]];
+		if [[ "$output_lossy_dir" != "" ]];
 		then
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid Output Directory:  " "$output_lossy_dir"
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Error Description:  " "$mkdir_error"
