@@ -46,7 +46,7 @@ until [[ "$valid_output" == "YES" ]]; do
 		output_dir_existed="NO"
 	fi
 
-	if [[ $mkdir_output == "" ]] && [[ $output_dir_existed="YES" ]] && [[ $output_lossy_dir != "" ]];
+	if [[ "$mkdir_output" == "" ]] && [[ "$output_dir_existed" == "YES" ]] && [[ "$output_lossy_dir" != "" ]];
 	then
 		valid_output="YES"
 		source "$SRC/src-tf-figlet.sh"
