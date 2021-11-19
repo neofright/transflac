@@ -67,7 +67,12 @@ then
 	printf "${RESTORE}\n"
 fi
 
-total_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
+if [[ $(uname) == "Darwin" ]]
+then
+	total_processes=$( pgrep "${process_name[$LOSSY_CODEC]}" | wc -l | tr -d ' ' )
+else
+	total_processes=$( pgrep -c "${process_name[$LOSSY_CODEC]}" )
+fi
 remaining_processes=$total_processes
 
 if [[ $total_processes -gt 0 ]];
