@@ -29,7 +29,7 @@ then
 	fi
 
 	flac_count=$(( flac_count-1 ))
-	printf "${LGRAY} %5s:  ${CYAN}%s ${RESTORE}\n" $flac_count $filename
+	printf "${LGRAY} %5s:  ${CYAN}%s ${RESTORE}\n" "$flac_count" "$filename"
 
 	while [[ $( pgrep ${process_name[$LOSSY_CODEC]} | wc -l | tr -d ' ' ) -ge $NUMCPU ]];
 	do
