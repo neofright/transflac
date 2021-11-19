@@ -34,6 +34,7 @@ until [[ $valid_dir == "YES" ]]; do
 		source $SRC/src-tf-help.sh
 		exit;;
 esac
+	rp_input_flac_dir="$( realpath -Pq "$input_flac_dir" 2>/dev/null )"
 
 	flac_count="$( find "$rp_input_flac_dir" 2>/dev/null | grep -ic "\.flac" )"
 	#total_flac="$flac_count"
