@@ -67,12 +67,7 @@ then
 	printf "${RESTORE}\n"
 fi
 
-if [[ $(uname) == "Darwin" ]]
-then
-	total_processes=$( pgrep "${process_name[$LOSSY_CODEC]}" | wc -l | tr -d ' ' )
-else
-	total_processes=$( pgrep -c "${process_name[$LOSSY_CODEC]}" )
-fi
+total_processes=$( pgrep "${process_name[$LOSSY_CODEC]}" | wc -l | tr -d ' ' )
 remaining_processes=$total_processes
 
 if [[ $total_processes -gt 0 ]];
@@ -82,10 +77,10 @@ fi
 
 until [[ $remaining_processes -eq "0" ]];
 do
-	remaining_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
-	if [[ $remaining_processes -gt $total_processes ]];
+	remaining_processes=$( pgrep "${process_name[$LOSSY_CODEC]}" | wc -l | tr -d ' ' )
+	if [[ "$remaining_processes" -gt "$total_processes" ]];
 	then	
-		remaining_processes=$total_processes
+		remaining_processes="$total_processes"
 	fi
 	processes_complete=$(( $total_processes-$remaining_processes ))
 	percent_complete=$(bc <<< "scale=2;($processes_complete/$total_processes)*100")
