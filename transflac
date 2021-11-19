@@ -39,7 +39,7 @@ source "$SRC/src-tf-ck-codec.sh"
 source "$SRC/src-tf-ck-quality.sh"
 source "$SRC/src-tf-table.sh"
 
-find "$rp_input_flac_dir" -print0 | while IFS= read -r -d '' file
+find "$rp_input_flac_dir" -mindepth 1 -type f -iname "*.flac" -print0 | while IFS= read -r -d '' file
 do
 
 	filedir="${file%/*}"
