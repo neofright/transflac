@@ -86,8 +86,8 @@ do
 	percent_complete=$(bc <<< "scale=2;($processes_complete/$total_processes)*100")
 	percent_complete=${percent_complete%.*}
 
-	source $SRC/src-tf-progress-bar.sh $processes_complete $total_processes
-	sleep 1s
+	source "$SRC/src-tf-progress-bar.sh" "$processes_complete" "$total_processes"
+	sleep 1
 done
 
 printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
