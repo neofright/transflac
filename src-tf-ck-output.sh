@@ -23,7 +23,7 @@ esac
 until [[ "$valid_output" == "YES" ]]; do
 
 	case $output_lossy_dir in
-		*[!/]*/) output_lossy_dir=${output_lossy_dir%"${output_lossy_dir##*[!/]}"};;
+		*[!/]*/) output_lossy_dir="${output_lossy_dir%"${output_lossy_dir##*[!/]}"}";;
 	esac
 
 	case ${output_lossy_dir^^} in
@@ -42,7 +42,7 @@ until [[ "$valid_output" == "YES" ]]; do
 		output_dir_existed="YES"
 	elif [[ "$output_lossy_dir" != "" ]];
 	then
-		mkdir_output=$( mkdir $output_lossy_dir 2>&1 )
+		mkdir_output="$( mkdir "$output_lossy_dir" 2>&1 )"
 		output_dir_existed="NO"
 	fi
 

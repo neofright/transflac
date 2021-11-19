@@ -19,19 +19,19 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-until [[ $valid_dir == "YES" ]]; do
+until [[ "$valid_dir" == "YES" ]]; do
 
 	case $input_flac_dir in
-		*[!/]*/) input_flac_dir=${input_flac_dir%"${input_flac_dir##*[!/]}"};;
+		*[!/]*/) input_flac_dir="${input_flac_dir%"${input_flac_dir##*[!/]}"}";;
 	esac
 
 
-	case ${input_flac_dir^^} in
+	case "${input_flac_dir^^}" in
 		"QUIT"|"EXIT"	)
 		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $input_flac_dir."
 		exit;;
 	"-H"|"--HELP"	)
-		source $SRC/src-tf-help.sh
+		source "$SRC/src-tf-help.sh"
 		exit;;
 esac
 	rp_input_flac_dir="$( realpath -Pq "$input_flac_dir" 2>/dev/null )"
@@ -42,11 +42,11 @@ esac
 	if [[ -d $rp_input_flac_dir && $flac_count -gt 0 ]];
 	then
 		valid_dir="YES"
-		source $SRC/src-tf-figlet.sh
+		source "$SRC/src-tf-figlet.sh"
 		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 	else
-		source $SRC/src-tf-figlet.sh
-		if [[ $input_flac_dir != "" ]];
+		source "$SRC/src-tf-figlet.sh"
+		if [[ "$input_flac_dir" != "" ]];
 		then
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid FLAC Directory:  " "$input_flac_dir"
 		fi
