@@ -61,7 +61,7 @@ until [[ $valid_codec == "YES" ]]; do
 			fi
 			printf "${GREEN}%s\n" "Please enter desired output CODEC"
 			printf "${YELLOW}%s${CYAN}\n" "$supported_codecs"
-			read -p "[ENTER]:  " lossy_codec codec_quality
+			read -rp "[ENTER]:  " lossy_codec codec_quality
 			printf "${RESTORE}\n";;
 	esac
 

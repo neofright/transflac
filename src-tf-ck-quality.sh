@@ -54,7 +54,7 @@ until [[ $valid_quality == "YES" ]]; do
 			fi
 			printf "${GREEN}%s\n" "Please enter desired CODEC QUALITY"
 			printf "${YELLOW}%s${CYAN}\n" "$supported_quality"
-			read -p '[ENTER]:  ' codec_quality
+			read -rp '[ENTER]:  ' codec_quality
 			printf "${RESTORE}\n";;
 	esac
 
