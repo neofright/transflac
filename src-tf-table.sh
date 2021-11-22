@@ -15,9 +15,8 @@
 
 case $BASH_SOURCE in
 	$0	)
-		printf "%sScript must be invoked via source command\n"
-		printf "%sExiting\n"
-	exit;;
+		printf "\nScript must be invoked via source command\nExiting\n"
+		exit;;
 esac
 
 declare -A quality_opus
