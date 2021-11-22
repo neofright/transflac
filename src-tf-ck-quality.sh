@@ -34,17 +34,17 @@ until [[ $valid_quality == "YES" ]]; do
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Quality Setting: " "$CODEC_QUALITY";;
 		"QUIT"|"EXIT"	)
-			if [[ $output_dir_existed == "NO" ]];
+			if [[ "$output_dir_existed" == "NO" ]];
 			then
-				rmdir $output_lossy_dir &> /dev/null
+				rmdir "$output_lossy_dir" &> /dev/null
 			fi
 			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $codec_quality."
 			exit;;
 		"-H"|"--HELP"▷⋅⋅)
-			source $SRC/src-tf-help.sh
+			source "$SRC/src-tf-help.sh"
 			exit;;
 		*	)
-			source $SRC/src-tf-figlet.sh
+			source "$SRC/src-tf-figlet.sh"
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 			printf "${RED}%s${YELLOW}%s\n\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
