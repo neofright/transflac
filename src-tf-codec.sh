@@ -19,7 +19,7 @@ case $BASH_SOURCE in
 		exit;;
 esac
 
-if [[ "$filetype" = "flac" ]] && [[ "$file" -nt "${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" ]];
+if [[ "$file" -nt "${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" ]];
 then
 	
 	if [[ $need_header == "NO" ]];
@@ -55,10 +55,7 @@ then
 
 else
 
-	if [[ "$filetype" = "flac" ]];
-	then
-		flac_count=$(( flac_count-1 ))
-	fi
+	flac_count=$(( flac_count-1 ))
 
 	if [[ -d "$file" ]];
 	then

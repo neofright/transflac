@@ -44,7 +44,7 @@ do
 	filedir="${file%/*}"
 	full_filename="${file##*/}"
 	filename="${full_filename%.*}"
-	filetype="${full_filename##*.}"
+	#filetype="${full_filename##*.}"
 
 	if [ "${filedir}/" == "${rp_input_flac_dir}" ];
 	then
