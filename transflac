@@ -46,14 +46,14 @@ do
 	filename="${full_filename%.*}"
 	#filetype="${full_filename##*.}"
 
-	if [ "${filedir}/" == "${rp_input_flac_dir}" ];
+	if [[ "${filedir}/" == "${rp_input_flac_dir}" ]]
 	then
 		filedir=""
 	else
 		filedir="${filedir#"$rp_input_flac_dir"}"
 	fi
 
-	if [ ! -d "${rp_output_lossy_dir}${filedir}" ] && [ "$filedir" != "${rp_input_flac_dir%/*}" ] ; 
+	if [[ ! -d "$rp_output_lossy_dir$filedir" ]] && [[ "$filedir" != "${rp_input_flac_dir%/*}" ]]
 	then
 		mkdir "${rp_output_lossy_dir}${filedir}"
 	fi
