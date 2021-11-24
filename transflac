@@ -21,7 +21,7 @@ source /etc/transflac.conf
 
 if [ -f "$HOME/.transflac.conf" ];
 then
-	source $HOME/.transflac.conf
+	source "$HOME/.transflac.conf"
 fi
 
 source "$SRC/src-tf-set-colors.sh"
