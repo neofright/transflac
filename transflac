@@ -55,7 +55,7 @@ do
 
 	if [[ ! -d "$rp_output_lossy_dir$filedir" ]] && [[ "$filedir" != "${rp_input_flac_dir%/*}" ]]
 	then
-		mkdir "${rp_output_lossy_dir}${filedir}"
+		mkdir -p "$rp_output_lossy_dir$filedir"
 	fi
 	
 	source "$SRC/src-tf-codec.sh"
