@@ -50,9 +50,7 @@ do
 	then
 		filedir=""
 	else
-		## Parameter substitution below doesn't work for me. Replacing with piped monstrosity that works ;)
-		#filedir="${filedir#$rp_input_flac_dir}"
-		filedir="$(echo "$filedir"|cut -c "$(echo "$rp_input_flac_dir"|wc -c|tr -d ' ')"-)"
+		filedir="${filedir#"$rp_input_flac_dir"}"
 	fi
 
 	if [ ! -d "${rp_output_lossy_dir}${filedir}" ] && [ "$filedir" != "${rp_input_flac_dir%/*}" ] ; 
