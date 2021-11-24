@@ -36,7 +36,7 @@ until [[ "$valid_output" == "YES" ]]; do
 	
 	rp_output_lossy_dir="$( realpath -P "$output_lossy_dir" 2>/dev/null )"
 
-	if [ -d "$rp_output_lossy_dir" ];
+	if [[ -d "$rp_output_lossy_dir" ]];
 	then
 		output_dir_existed="YES"
 	elif [[ "$output_lossy_dir" != "" ]];

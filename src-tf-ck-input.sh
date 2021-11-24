@@ -39,7 +39,7 @@ esac
 	flac_count="$( find "$rp_input_flac_dir" 2>/dev/null | grep -ic "\.flac" )"
 	total_flac="$flac_count"
 
-	if [[ -d $rp_input_flac_dir && $flac_count -gt 0 ]];
+	if [[ -d "$rp_input_flac_dir" && "$flac_count" -gt 0 ]];
 	then
 		valid_dir="YES"
 		source "$SRC/src-tf-figlet.sh"
