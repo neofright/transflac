@@ -60,7 +60,7 @@ do
 	
 	source "$SRC/src-tf-codec.sh"
 
-done < <(find -L "$rp_input_flac_dir" -mindepth 1 -type f -iname "*.flac" -print0)
+done < <(find "$rp_input_flac_dir" -mindepth 1 -type f -iname "*.flac" -print0)
 
 if [[ "$need_header" == "YES" ]];
 then
