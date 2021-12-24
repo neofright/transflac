@@ -36,7 +36,7 @@ until [[ "$valid_dir" == "YES" ]]; do
 esac
 	rp_input_flac_dir="$( realpath -Pq "$input_flac_dir" 2>/dev/null )"
 
-	flac_count="$( find "$rp_input_flac_dir" 2>/dev/null | grep -ic "\.flac" )"
+	flac_count="$( find -L "$rp_input_flac_dir" -mindepth 1 -type f -iname "*.flac" 2>/dev/null | wc -l | tr -d ' ')"
 	total_flac="$flac_count"
 
 	if [[ -d "$rp_input_flac_dir" && "$flac_count" -gt 0 ]];
