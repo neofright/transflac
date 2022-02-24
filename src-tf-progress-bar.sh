@@ -13,6 +13,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+case $BASH_SOURCE in
+	$0	)
+		printf "\nScript must be invoked via source command\nExiting\n"
+		exit;;
+esac
+
 let tf_progress=(${1}*100/${2}*100)/100
 let tf_finish=(${tf_progress}*5)/10
 let tf_remains=50-$tf_finish

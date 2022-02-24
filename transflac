@@ -15,16 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-version="1.0.1"
+version="1.0.2"
 
-source /etc/transflac.conf
+source "/etc/transflac.conf"
 
 if [ -f "$HOME/.transflac.conf" ];
 then
-	source $HOME/.transflac.conf
+	source "$HOME/.transflac.conf"
 fi
 
-source $SRC/src-tf-set-colors.sh
+source "$SRC/src-tf-set-colors.sh"
 
 valid_codec="NO"
 valid_quality="NO"
@@ -32,13 +32,13 @@ valid_dir="NO"
 valid_output="NO"
 need_header="YES"
 
-source $SRC/src-tf-ck-input.sh
-source $SRC/src-tf-ck-output.sh
-source $SRC/src-tf-ck-codec.sh
-source $SRC/src-tf-ck-quality.sh
-source $SRC/src-tf-table.sh
+source "$SRC/src-tf-ck-input.sh"
+source "$SRC/src-tf-ck-output.sh"
+source "$SRC/src-tf-ck-codec.sh"
+source "$SRC/src-tf-ck-quality.sh"
+source "$SRC/src-tf-table.sh"
 
-find $rp_input_flac_dir -print0 | while IFS= read -r -d '' file
+find "$rp_input_flac_dir" -print0 | while IFS= read -r -d '' file
 do
 
 	filedir=${file%/*}
@@ -46,29 +46,29 @@ do
 	filename=${full_filename%.*}
 	filetype=${full_filename##*.}
 
-	if [ "$filedir/" == "$rp_input_flac_dir" ];
+	if [[ "$filedir/" == "$rp_input_flac_dir" ]];
 	then
 		filedir=""
 	else
-		filedir=${filedir#$rp_input_flac_dir}
+		filedir="${filedir#"$rp_input_flac_dir"}"
 	fi
 
-	if [ ! -d "$rp_output_lossy_dir$filedir" ] && [ $filedir != ${rp_input_flac_dir%/*} ] ; 
+	if [[ ! -d "$rp_output_lossy_dir$filedir" ]] && [[ "$filedir" != "${rp_input_flac_dir%/*}" ]] ; 
 	then
 		mkdir "$rp_output_lossy_dir$filedir"
 	fi
 	
-	source $SRC/src-tf-codec.sh
+	source "$SRC/src-tf-codec.sh"
 
 done
 
-if [[ $need_header == "YES" ]];
+if [[ "$need_header" == "YES" ]];
 then
 	printf "${RESTORE}\n"
 fi
 
-total_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
-remaining_processes=$total_processes
+total_processes=$( pgrep -c "${process_name[$LOSSY_CODEC]}" )
+remaining_processes="$total_processes"
 
 if [[ $total_processes -gt 0 ]];
 then
@@ -77,21 +77,21 @@ fi
 
 until [[ $remaining_processes -eq "0" ]];
 do
-	remaining_processes=$( pgrep -c ${process_name[$LOSSY_CODEC]} )
-	if [[ $remaining_processes -gt $total_processes ]];
+	remaining_processes=$( pgrep -c "${process_name[$LOSSY_CODEC]}" )
+	if [[ "$remaining_processes" -gt "$total_processes" ]];
 	then	
-		remaining_processes=$total_processes
+		remaining_processes="$total_processes"
 	fi
 	processes_complete=$(( $total_processes-$remaining_processes ))
 	percent_complete=$(bc <<< "scale=2;($processes_complete/$total_processes)*100")
 	percent_complete=${percent_complete%.*}
 
-	source $SRC/src-tf-progress-bar.sh $processes_complete $total_processes
+	source "$SRC/src-tf-progress-bar.sh" "$processes_complete" "$total_processes"
 	sleep 1s
 done
 
 printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
-rsync -avzq --include '*/' --include 'folder.jpg' --exclude '*' $rp_input_flac_dir"/" $rp_output_lossy_dir"/"
+rsync -avzq --include '*/' --include 'folder.jpg' --exclude '*' "$rp_input_flac_dir/" "$rp_output_lossy_dir/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
 

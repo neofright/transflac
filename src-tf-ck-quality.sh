@@ -13,7 +13,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 case $BASH_SOURCE in
 	$0	)
 		printf "%s\nScript must be invoked via source command\nExiting\n"
@@ -28,7 +27,7 @@ until [[ $valid_quality == "YES" ]]; do
 		"LOW"|"MEDIUM"|"STANDARD"|"HIGH"|"PREMIUM"	)
 			valid_quality="YES"
 			CODEC_QUALITY=${codec_quality^^}
-			source $SRC/src-tf-figlet.sh
+			source "$SRC/src-tf-figlet.sh"
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
@@ -48,7 +47,7 @@ until [[ $valid_quality == "YES" ]]; do
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 			printf "${RED}%s${YELLOW}%s\n\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
-			if [[ $codec_quality != "" ]]
+			if [[ "$codec_quality" != "" ]]
 			then
 				printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid CODEC QUALITY: " "$codec_quality"
 			fi

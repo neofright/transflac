@@ -15,8 +15,7 @@
 
 case $BASH_SOURCE in
 	$0	)
-		printf "%sScript must be invoked via source command\n"
-		printf "%sExiting\n"
+		printf "%s\nScript must be invoked via source command\nExiting\n"
 	exit;;
 esac
 
@@ -32,7 +31,7 @@ quality_ogg["LOW"]="1"
 quality_ogg["MEDIUM"]="2"
 quality_ogg["STANDARD"]="3"
 quality_ogg["HIGH"]="4"
-guality_ogg["PREMIUM"]="5"
+quality_ogg["PREMIUM"]="5"
 
 declare -A quality_aac
 quality_aac["LOW"]="1"
