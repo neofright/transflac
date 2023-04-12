@@ -23,6 +23,6 @@ clear
 
 printf "${BLUE}${BOLD}"
 ( figlet -t -f standard TransFLAC )
-printf "${RESTORE}"
+printf "%s" "${RESTORE}"
 
 return

@@ -64,7 +64,7 @@ until [[ "$valid_output" == "YES" ]]; do
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter output directory and press"
 		read -rep "[ENTER]:  " output_lossy_dir lossy_codec codec_quality
-		printf "${RESTORE}\n"
+		printf "%s\n" "${RESTORE}"
 	fi
 
 done

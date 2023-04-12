@@ -52,7 +52,7 @@ esac
 		fi
 		printf "${GREEN}%s${CYAN}\n" "Please enter input FLAC directory and press"
 		read -rep "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality
-		printf "${RESTORE}\n"
+		printf "%s\n" "${RESTORE}"
 	fi
 
 done
