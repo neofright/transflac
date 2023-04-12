@@ -24,7 +24,7 @@ then
 	
 	if [[ $need_header == "NO" ]];
 	then
-		printf "%s\n" "${RESTORE}"
+		printf "${RESTORE}\n"
 		need_header="YES"
 	fi
 

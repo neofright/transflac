@@ -64,7 +64,7 @@ done < <(find -L "$rp_input_flac_dir" -mindepth 1 -type f -iname "*.flac" -print
 
 if [[ "$need_header" == "YES" ]];
 then
-	printf "%s\n" "${RESTORE}"
+	printf "${RESTORE}\n"
 fi
 
 total_processes=$( pgrep "${process_name[$LOSSY_CODEC]}" | wc -l | tr -d ' ' )
@@ -93,6 +93,6 @@ done
 printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
 rsync -avzq --include '*/' --include 'folder.jpg' --exclude '*' "${rp_input_flac_dir}/" "${rp_output_lossy_dir}/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
-printf "%s\n" "${RESTORE}"
+printf "${RESTORE}\n"
 
 exit
