@@ -34,8 +34,14 @@ until [[ "$valid_output" == "YES" ]]; do
 			exit;;
 		esac
 	
-	rp_output_lossy_dir="$( realpath -P "$output_lossy_dir" 2>/dev/null )"
-
+	## https://apple.stackexchange.com/questions/453325/changing-realpath-utility-on-macos-ventura
+	if [[ $(uname) == "Darwin" ]]
+	then
+		rp_output_lossy_dir="$( realpath "$output_lossy_dir" 2>/dev/null )"
+	else
+		rp_output_lossy_dir="$( realpath -P "$output_lossy_dir" 2>/dev/null )"
+	fi
+	
 	if [[ -d "$rp_output_lossy_dir" ]];
 	then
 		output_dir_existed="YES"
