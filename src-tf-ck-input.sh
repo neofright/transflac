@@ -34,7 +34,13 @@ until [[ "$valid_dir" == "YES" ]]; do
 		source "$SRC/src-tf-help.sh"
 		exit;;
 esac
-	rp_input_flac_dir="$( realpath -Pq "$input_flac_dir" 2>/dev/null )"
+	## macOS 13 seems to ship realpath without support for '-P'
+	if [[ $(uname) == "Darwin" ]]
+	then
+		rp_input_flac_dir="$( realpath -q "$input_flac_dir" 2>/dev/null )"
+	else
+		rp_input_flac_dir="$( realpath -Pq "$input_flac_dir" 2>/dev/null )"
+	fi
 
 	flac_count="$( find -L "$rp_input_flac_dir" -mindepth 1 -type f -iname "*.flac" 2>/dev/null | wc -l | tr -d ' ')"
 	total_flac="$flac_count"
