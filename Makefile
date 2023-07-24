@@ -29,6 +29,8 @@ install:
 	$(INSTALL) -m 644 src-tf-codec.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -m 644 src-tf-figlet.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -m 644 src-tf-terminal-header.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-conf-override.sh $(DESTDIR)$(libexecdir)
+	$(INSTALL) -m 644 src-tf-set-variables.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -m 644 src-tf-progress-bar.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -m 644 src-tf-table.sh $(DESTDIR)$(libexecdir)
 	$(INSTALL) -m 644 src-tf-help.sh $(DESTDIR)$(libexecdir)
@@ -54,6 +56,8 @@ uninstall:
 	$(DESTDIR)$(libexecdir)/src-tf-help.sh \
 	$(DESTDIR)$(libexecdir)/src-tf-figlet.sh \
 	$(DESTDIR)$(libexecdir)/src-tf-terminal-header.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-conf-override.sh \
+	$(DESTDIR)$(libexecdir)/src-tf-set-variables.sh \
 	$(DESTDIR)$(libexecdir)/src-tf-progress-bar.sh \
 	$(DESTDIR)$(libexecdir)/src-tf-table.sh \
 	$(DESTDIR)$(sysconfdir)/transflac.conf \

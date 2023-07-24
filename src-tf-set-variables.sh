@@ -1,4 +1,4 @@
-# Copyright © 2015-2019 Gerald B. Cox
+# Copyright © 2023 Gerald B. Cox
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,14 +15,21 @@
 
 case $BASH_SOURCE in
 	$0	)
-		printf "%s\nScript must be invoked via source command\nExiting\n"
-		exit;;
+	printf "%s\nScript must be invoked via source command\nExiting\n"
+	exit 1;;
 esac
 
-clear
+VERSION="1.1.0"
+input_flac_dir="$1"
+output_lossy_dir="$2"
+lossy_codec="${3^^}"
+codec_quality="${4^^}"
+FIGFONT="small"
 
-printf "${BLUE}${BOLD}"
-( figlet -t -f $FIGFONT TransFLAC )
-printf "${RESTORE}"
+NUMCPU="$( nproc --all )"
+
+if [ -f "$HOME/.transflac.conf" ]; then
+	source "$SRC/src-tf-conf-override.sh"
+fi
 
 return

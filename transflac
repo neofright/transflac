@@ -15,15 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-version="1.0.2"
+SRC="/usr/libexec/transflac"
 
-source "/etc/transflac.conf"
-
-if [ -f "$HOME/.transflac.conf" ];
-then
-	source "$HOME/.transflac.conf"
-fi
-
+source "$SRC/src-tf-set-variables.sh"
 source "$SRC/src-tf-set-colors.sh"
 
 valid_codec="NO"
@@ -90,8 +84,25 @@ do
 	sleep 1s
 done
 
-printf "${YELLOW}%s\nSyncing all folder.jpg files...\n"
-rsync -avzq --include '*/' --include 'folder.jpg' --exclude '*' "$rp_input_flac_dir/" "$rp_output_lossy_dir/"
+printf "${YELLOW}%s\nSyncing all album art files...\n"
+rsync -avzq --include '*/' \
+	--include 'albumart.gif' \
+	--include 'albumart.jpg' \
+	--include 'albumart.jpeg' \
+	--include 'albumart.png' \
+	--include 'albumart.tiff' \
+	--include 'cover.gif' \
+	--include 'cover.jpg' \
+	--include 'cover.jpeg' \
+	--include 'cover.png' \
+	--include 'cover.tiff' \
+	--include 'folder.gif' \
+	--include 'folder.jpg' \
+	--include 'folder.jpeg' \
+	--include 'folder.png' \
+	--include 'folder.tiff' \
+	--exclude '*' \
+	"$rp_input_flac_dir/" "$rp_output_lossy_dir/"
 printf "${BLUE}${BOLD}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
 

@@ -11,16 +11,15 @@ and preserving tag information can be a bit tedious.
 is designed to automate this. It will start at the input_flac_directory and
 recursively walk the directory structure converting each flac audio file to the
 specified lossy codec - preserving all associated tag information.  Additionally,
-any cover art (stored in the directory structure as folder.jpg) will be
+any cover art (stored in the directory structure as 
+albumart | cover | folder . gif | jpg | jpeg | png | tiff) will be
 duplicated in the target lossy directories.
 .SH CONFIGURATION
-\fBtransflac\fR sources two configuration files on startup - \fI/etc/transflac.conf\fR and
-\fI$HOME/.transflac.conf\fR, in that order.
+\fBtransflac\fR allows for customization of certain items in the configuration.
 .PP
-The configuration options stated in those files can be overridden by providing
-the appropriate flags at runtime.
+If you wish to change an option in the configuration, first create a copy: \ficp /etc/transflac.conf $HOME/.transflac.conf\fR then modify only the \fI$HOME/.transflac.conf\fR version.
 .PP
-The configuration variables have to be set as follows:
+The configuration variables cn be set as follows:
 .TP
 .B VARIABLE="value"
 "value" needs to be quoted.
@@ -28,6 +27,10 @@ The configuration variables have to be set as follows:
 All shell escaping/quoting rules apply.
 .TP
 Here is a list of options \fBtransflac\fR recognizes:
+.TP
+.B FIGFONT="small"
+Default setting is small.
+This is the font to be used by the Figlet generated banner.
 .TP
 .B input_flac_dir=""
 Specifies the directory starting point which will be recursively
