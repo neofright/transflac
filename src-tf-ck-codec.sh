@@ -21,14 +21,8 @@ esac
 
 shopt -s extglob
 
-if type -P ffmpeg > /dev/null;
-then
-	supported_codecs="Supported:  OPUS | OGG | AAC | MP3"
-	codecs="@(OPUS|OGG|AAC|MP3)"
-else
-	supported_codecs="Supported:  OPUS | OGG"
-	codecs="@(OPUS|OGG)"
-fi
+supported_codecs="Supported:  OPUS | OGG | AAC | MP3"
+codecs="@(OPUS|OGG|AAC|MP3)"
 
 until [[ $valid_codec == "YES" ]]; do
 
