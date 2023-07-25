@@ -19,7 +19,7 @@ case $BASH_SOURCE in
 	exit 1;;
 esac
 
-VERSION="1.1.0"
+VERSION="1.1.1"
 input_flac_dir="$1"
 output_lossy_dir="$2"
 lossy_codec="${3^^}"
