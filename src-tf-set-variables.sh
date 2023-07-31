@@ -19,7 +19,8 @@ case $BASH_SOURCE in
 	exit 1;;
 esac
 
-VERSION="1.2.1"
+VERSION="1.2.2"
+ARTSYNC="YES"
 FIGFONT="small"
 NUMCPU="$( nproc --all )"
 

@@ -84,8 +84,10 @@ do
 	sleep 1s
 done
 
-printf "${CMSG}%s\nSyncing all album art files...\n"
-rsync -avzq --include '*/' \
+if [[ "$ARTSYNC" == "YES" ]];
+then
+	printf "${CMSG}%s\nSyncing all album art files...\n"
+	rsync -avzq --include '*/' \
 	--include 'albumart.gif' \
 	--include 'albumart.jpg' \
 	--include 'albumart.jpeg' \
@@ -103,6 +105,8 @@ rsync -avzq --include '*/' \
 	--include 'folder.tiff' \
 	--exclude '*' \
 	"$rp_input_flac_dir/" "$rp_output_lossy_dir/"
+fi
+
 printf "${CHLITE}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
 

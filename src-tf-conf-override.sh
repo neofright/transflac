@@ -52,6 +52,13 @@ for line in "${conf_table[@]}"; do
 		if [[ ${line_var} =~ $ck_index ]]; then
 			codec_quality=$line_var
 		fi;;
+	"ARTSYNC"		)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${line_var} =~ $ck_index ]]; then
+			ARTSYNC=$line_var
+		fi;;
 	"CNOTICE"			)
 		line_var=${line##*=}
 		line_var=${line_var%\"}

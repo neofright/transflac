@@ -9,4 +9,4 @@ can be found in the TransFLAC Wiki located:  https://bitbucket.org/gbcox/transfl
 
 Licensed under GNU GPL version 3 or later
 
-Copyright © 2015-2019 Gerald Cox (unless explicitly stated otherwise)
+Copyright © 2015-2023 Gerald Cox (unless explicitly stated otherwise)
