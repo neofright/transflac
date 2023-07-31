@@ -21,13 +21,9 @@ esac
 
 until [[ $valid_output == "YES" ]]; do
 
-#	case $output_lossy_dir in
-#		*[!/]*/) output_lossy_dir=${output_lossy_dir%"${output_lossy_dir##*[!/]}"};;
-#	esac
-
 	case "${output_lossy_dir^^}" in
 		"QUIT"|"EXIT"	)
-			printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $output_lossy_dir."
+			printf "${CERROR}%s${RESTORE}\n" "Exiting.  You entered $output_lossy_dir."
 			exit;;
 		"-H"|"--HELP"	)
 			source "SRC/src-tf-help.sh"
@@ -49,20 +45,20 @@ until [[ $valid_output == "YES" ]]; do
 	then
 		valid_output="YES"
 		source "SRC/src-tf-figlet.sh"
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
+		printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+		printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 	else
 		valid_output="NO"
 		mkdir_error="${mkdir_output##*: }"
 		mkdir_error="${mkdir_error%%$'\n'*}"
 		source "$SRC/src-tf-figlet.sh"
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+		printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 		if [[ $output_lossy_dir != "" ]];
 		then
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Invalid Output Directory:  " "$output_lossy_dir"
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Error Description:  " "$mkdir_error"
+			printf "${CERROR}%s${CHOICE}%s${RESTORE}\n" "Invalid Output Directory:  " "$output_lossy_dir"
+			printf "${CERROR}%s${CHOICE}%s${RESTORE}\n\n" "Error Description:  " "$mkdir_error"
 		fi
-		printf "${GREEN}%s${CYAN}\n" "Please enter output directory and press"
+		printf "${CQUESTION}%s${CPROMPT}\n" "Please enter output directory and press"
 		read -ep "[ENTER]:  " output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"
 	fi

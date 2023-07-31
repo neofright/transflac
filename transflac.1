@@ -19,7 +19,7 @@ duplicated in the target lossy directories.
 .PP
 If you wish to change an option in the configuration, first create a copy: \ficp /etc/transflac.conf $HOME/.transflac.conf\fR then modify only the \fI$HOME/.transflac.conf\fR version.
 .PP
-The configuration variables cn be set as follows:
+The configuration variables can be set as follows:
 .TP
 .B VARIABLE="value"
 "value" needs to be quoted.
@@ -30,7 +30,7 @@ Here is a list of options \fBtransflac\fR recognizes:
 .TP
 .B FIGFONT="small"
 Default setting is small.
-This is the font to be used by the Figlet generated banner.
+This is the font to be used by the FIGlet generated banner.
 .TP
 .B input_flac_dir=""
 Specifies the directory starting point which will be recursively
@@ -75,6 +75,14 @@ OGG@80 kbps@96 kbps@112 kbps@128 kbps@160 kbps
 AAC@40 kbps@80 kbps@96 kbps@128 kbps@224 kbps
 MP3@85 kbps@100 kbps@115 kbps@130 kbps@165 kbps
 .TE
+.TP
+.sp 1
+.B COLOR OVERRIDES
+Colors can be modified by assigning a valid color name to the variable names as shown in the sample transflac.conf file. Monochrome or terminal defaults can be obtained by setting the a particular variable name to "DEFAULT". Additional information can be found at TransFLAC website.
+.sp 1
+Available color names: RED, YELLOW, GREEN, BLUE, CYAN, PURPLE, GRAY
+.sp 1
+Placing an "L" in fron of the color designates the "LIGHT" version.
 .SH EXAMPLES
 Possible ways one can call \fBtransflac\fR:
 .TP
@@ -86,7 +94,7 @@ options in $HOME/.transflac.conf those values will be substituted.
 transflac processing will proceed with the options entered on the
 command line.
 .SH BACKEND TOOLS
-\fBtransflac\fR requires the following backend tools to work:
+\fBtransflac\fR requires the following backend tools:
 .TP
 .B *
 opus-tools - Required to convert files to the OPUS lossy format

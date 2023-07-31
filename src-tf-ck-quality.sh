@@ -28,31 +28,31 @@ until [[ $valid_quality == "YES" ]]; do
 			valid_quality="YES"
 			CODEC_QUALITY=${codec_quality^^}
 			source "$SRC/src-tf-figlet.sh"
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n" "Quality Setting: " "$CODEC_QUALITY";;
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
+			printf "${CNOTICE}%s${CHOICE}%s${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
+			printf "${CNOTICE}%s${CHOICE}%s${RESTORE}\n" "Quality Setting: " "$CODEC_QUALITY";;
 		"QUIT"|"EXIT"	)
 			if [[ $output_dir_existed == "NO" ]];
 			then
 				rmdir $output_lossy_dir &> /dev/null
 			fi
-			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $codec_quality."
+			printf "${CERROR}%s\n${RESTORE}\n" "Exiting.  You entered $codec_quality."
 			exit;;
 		"-H"|"--HELP"▷⋅⋅)
 			source $SRC/src-tf-help.sh
 			exit;;
 		*	)
 			source $SRC/src-tf-figlet.sh
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
-			printf "${RED}%s${YELLOW}%s\n\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
+			printf "${CNOTICE}%s${CHOICE}%s\n\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
 			if [[ "$codec_quality" != "" ]]
 			then
-				printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid CODEC QUALITY: " "$codec_quality"
+				printf "${CERROR}%s${CHOICE}%s${RESTORE}\n\n" "Invalid CODEC QUALITY: " "$codec_quality"
 			fi
-			printf "${GREEN}%s\n" "Please enter desired CODEC QUALITY"
-			printf "${YELLOW}%s${CYAN}\n" "$supported_quality"
+			printf "${CQUESTION}%s\n" "Please enter desired CODEC QUALITY"
+			printf "${CHOICE}%s${CPROMPT}\n" "$supported_quality"
 			read -p '[ENTER]:  ' codec_quality
 			printf "${RESTORE}\n";;
 	esac

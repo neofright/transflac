@@ -24,36 +24,126 @@ mapfile -t conf_table < "$HOME/.transflac.conf"
 for line in "${conf_table[@]}"; do
 	line_action=${line%%=*}
 	case $line_action in
-	"input_flac_dir"         )
+	"input_flac_dir"	)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
 		if [[ ${line_var} =~ $ck_index ]]; then
 			input_flac_dir=$line_var
 		fi;;
-	"output_lossy_dir"       )
+	"output_lossy_dir"	)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
 		if [[ ${line_var} =~ $ck_index ]]; then
 			output_lossy_dir=$line_var
 		fi;;
-	"lossy_codec"       )
+	"lossy_codec"		)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
 		if [[ ${line_var} =~ $ck_index ]]; then
 			lossy_codec=$line_var
 		fi;;
-	"codec_quality"       )
+	"codec_quality"		)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
 		if [[ ${line_var} =~ $ck_index ]]; then
 			codec_quality=$line_var
 		fi;;
-	"FIGFONT"       )
+	"CNOTICE"			)
 		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CNOTICE=${term_color[$line_var]}
+		fi;;
+	"CERROR"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CERROR=${term_color[$line_var]}
+		fi;;
+	"CINFO"				)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CINFO=${term_color[$line_var]}
+		fi;;
+	"CHLITE"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CHLITE=${term_color[$line_var]}
+		fi;;
+	"CALBUM"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CALBUM=${term_color[$line_var]}
+		fi;;
+	"COUNT"				)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			COUNT=${term_color[$line_var]}
+		fi;;
+	"CTRACK"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CTRACK=${term_color[$line_var]}
+		fi;;
+	"CPROMPT"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CPROMPT=${term_color[$line_var]}
+		fi;;
+	"CHOICE"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CHOICE=${term_color[$line_var]}
+		fi;;
+	"CMSG"				)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CMSG=${term_color[$line_var]}
+		fi;;
+	"CPERCENT"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CPERCENT=${term_color[$line_var]}
+		fi;;
+	"CQUESTION"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CQUESTION=${term_color[$line_var]}
+		fi;;
+	"CBANNER"			)
+		line_var=${line##*=}
+		line_var=${line_var%\"}
+		line_var=${line_var#\"}
+		if [[ ${term_color[$line_var]} ]]; then
+			CBANNER=${term_color[$line_var]}
+		fi;;
+	"FIGFONT"			)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}

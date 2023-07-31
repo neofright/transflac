@@ -25,7 +25,7 @@ let tf_remains=50-$tf_finish
 tf_fill=$(printf "%${tf_finish}s")
 tf_void=$(printf "%${tf_remains}s")
 
-printf "${BLUE}%s\r" "[${tf_fill// /\#}${tf_void// /-}] $tf_progress%"
+printf "${CPERCENT}%s\r" "[${tf_fill// /\#}${tf_void// /-}] $tf_progress%"
 
 if [[ $tf_progress == "100" ]];
 then

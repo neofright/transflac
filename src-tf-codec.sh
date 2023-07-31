@@ -29,7 +29,7 @@ then
 	fi
 
 	flac_count=$(( flac_count-1 ))
-	printf "${LGRAY} %5s:  ${CYAN}%s ${RESTORE}\n" "$flac_count" "$filename"
+	printf "${COUNT} %5s:  ${CTRACK}%s ${RESTORE}\n" "$flac_count" "$filename"
 
 	while [[ $( pgrep -c "${process_name[$LOSSY_CODEC]}" ) -ge "$NUMCPU" ]];
 	do
@@ -67,7 +67,7 @@ else
 			source "$SRC/src-tf-terminal-header.sh"
 		fi
 		tf_columns=$(( COLUMNS-1 ))
-		printf "\e[K${YELLOW}%".$tf_columns"s ${RESTORE}\r" "..$filedir/$full_filename"
+		printf "\e[K${CALBUM}%".$tf_columns"s ${RESTORE}\r" "..$filedir/$full_filename"
 	fi
 
 fi

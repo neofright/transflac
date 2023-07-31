@@ -31,29 +31,29 @@ until [[ $valid_codec == "YES" ]]; do
 			valid_codec="YES"
 			LOSSY_CODEC=${lossy_codec^^}
 			source $SRC/src-tf-figlet.sh
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
-			printf "${RED}%s${YELLOW}%s\n${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC";;
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
+			printf "${CNOTICE}%s${CHOICE}%s\n${RESTORE}\n" "Transcoding: " "FLAC to $LOSSY_CODEC";;
 		"QUIT"|"EXIT"	)
 			if [[ $output_dir_existed == "NO" ]];
 			then
 				rmdir $output_lossy_dir &> /dev/null
 			fi
-			printf "${RED}%s\n${RESTORE}\n" "Exiting.  You entered $lossy_codec."
+			printf "${CERROR}%s\n${RESTORE}\n" "Exiting.  You entered $lossy_codec."
 			exit;;
 		"-H"|"--HELP"▷⋅⋅)
 			source $SRC/src-tf-help.sh
 			exit;;
 		*	)
 			source $SRC/src-tf-figlet.sh
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
-			printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 			if [[ $lossy_codec != "" ]]
 				then
-				printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid Output Codec:  " "$lossy_codec"
+				printf "${CERROR}%s${CHOICE}%s${RESTORE}\n\n" "Invalid Output Codec:  " "$lossy_codec"
 			fi
-			printf "${GREEN}%s\n" "Please enter desired output CODEC"
-			printf "${YELLOW}%s${CYAN}\n" "$supported_codecs"
+			printf "${CQUESTION}%s\n" "Please enter desired output CODEC"
+			printf "${CHOICE}%s${CPROMPT}\n" "$supported_codecs"
 			read -p "[ENTER]:  " lossy_codec codec_quality
 			printf "${RESTORE}\n";;
 	esac

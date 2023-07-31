@@ -23,10 +23,10 @@ need_header="NO"
 
 source $SRC/src-tf-figlet.sh
 
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "INPUT " " Directory " "$rp_input_flac_dir"
-printf "${RED}%s${GREEN}%s${YELLOW}%s\n" "OUTPUT" " Directory " "$rp_output_lossy_dir"
-printf "${RED}%s${YELLOW}%s\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
-printf "${RED}%s${YELLOW}%s\n\n" "Quality Setting: " "$CODEC_QUALITY"
-printf "${LBLUE}%s${LGRAY}%s${GREEN}%s${LBLUE}%s${RESTORE}\n\n" "***" " $total_flac " "FLAC files are being processed " "***"
+printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s\n" "INPUT " " Directory " "$rp_input_flac_dir"
+printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s\n" "OUTPUT" " Directory " "$rp_output_lossy_dir"
+printf "${CNOTICE}%s${CHOICE}%s\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
+printf "${CNOTICE}%s${CHOICE}%s\n\n" "Quality Setting: " "$CODEC_QUALITY"
+printf "${CHLITE}%s${COUNT}%s${CINFO}%s${CHLITE}%s${RESTORE}\n\n" "***" " $total_flac " "FLAC files are being processed " "***"
 
 return

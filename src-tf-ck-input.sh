@@ -28,7 +28,7 @@ until [[ "$valid_dir" == "YES" ]]; do
 
 	case "${input_flac_dir^^}" in
 		"QUIT"|"EXIT"	)
-		printf "${RED}%s${RESTORE}\n" "Exiting.  You entered $input_flac_dir."
+		printf "${CERROR}%s${RESTORE}\n" "Exiting.  You entered $input_flac_dir."
 		exit;;
 	"-H"|"--HELP"	)
 		source "$SRC/src-tf-help.sh"
@@ -44,14 +44,14 @@ esac
 	then
 		valid_dir="YES"
 		source "$SRC/src-tf-figlet.sh"
-		printf "${RED}%s${GREEN}%s${YELLOW}%s${GREEN}%s${RESTORE}\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
+		printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s${RESTORE}\n\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 	else
 		source "$SRC/src-tf-figlet.sh"
 		if [[ $input_flac_dir != "" ]];
 		then
-			printf "${RED}%s${YELLOW}%s${RESTORE}\n\n" "Invalid FLAC Directory:  " "$input_flac_dir"
+			printf "${CERROR}%s${CHOICE}%s${RESTORE}\n\n" "Invalid FLAC Directory:  " "$input_flac_dir"
 		fi
-		printf "${GREEN}%s${CYAN}\n" "Please enter input FLAC directory and press"
+		printf "${CQUESTION}%s${CPROMPT}\n" "Please enter input FLAC directory and press"
 		read -ep "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"
 	fi

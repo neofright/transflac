@@ -19,14 +19,28 @@ case $BASH_SOURCE in
 	exit 1;;
 esac
 
-VERSION="1.1.1"
+VERSION="1.2.0"
+FIGFONT="small"
+NUMCPU="$( nproc --all )"
+
 input_flac_dir="$1"
 output_lossy_dir="$2"
 lossy_codec="${3^^}"
 codec_quality="${4^^}"
-FIGFONT="small"
 
-NUMCPU="$( nproc --all )"
+CBANNER="$BLUE$BOLD"
+CNOTICE="$LRED"
+CERROR="$RED"
+CINFO="$GREEN"
+COUNT="$LGRAY"
+CHLITE="$CYAN"
+CALBUM="$LYELLOW"
+CTRACK="$LBLUE"
+CPROMPT="$LCYAN$BOLD"
+CHOICE="$YELLOW"
+CMSG="$YELLOW"
+CPERCENT="$BLUE"
+CQUESTION="$GREEN"
 
 if [ -f "$HOME/.transflac.conf" ]; then
 	source "$SRC/src-tf-conf-override.sh"

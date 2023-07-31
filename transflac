@@ -17,8 +17,8 @@
 
 SRC="/usr/libexec/transflac"
 
-source "$SRC/src-tf-set-variables.sh"
 source "$SRC/src-tf-set-colors.sh"
+source "$SRC/src-tf-set-variables.sh"
 
 valid_codec="NO"
 valid_quality="NO"
@@ -66,7 +66,7 @@ remaining_processes="$total_processes"
 
 if [[ $total_processes -gt 0 ]];
 then
-	printf "${YELLOW}%sCompleting remaining $total_processes processes...\n"
+	printf "${CMSG}%sCompleting remaining $total_processes processes...\n"
 fi
 
 until [[ $remaining_processes -eq "0" ]];
@@ -84,7 +84,7 @@ do
 	sleep 1s
 done
 
-printf "${YELLOW}%s\nSyncing all album art files...\n"
+printf "${CMSG}%s\nSyncing all album art files...\n"
 rsync -avzq --include '*/' \
 	--include 'albumart.gif' \
 	--include 'albumart.jpg' \
@@ -103,7 +103,7 @@ rsync -avzq --include '*/' \
 	--include 'folder.tiff' \
 	--exclude '*' \
 	"$rp_input_flac_dir/" "$rp_output_lossy_dir/"
-printf "${BLUE}${BOLD}\n%sProcessing complete\n"
+printf "${CHLITE}\n%sProcessing complete\n"
 printf "${RESTORE}\n"
 
 exit

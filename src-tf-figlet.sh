@@ -21,7 +21,7 @@ esac
 
 clear
 
-printf "${BLUE}${BOLD}"
+printf "${CBANNER}"
 ( figlet -t -f $FIGFONT TransFLAC )
 printf "${RESTORE}"
 
