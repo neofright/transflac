@@ -22,8 +22,8 @@ esac
 printf "%s\n" "This is transflac v$VERSION" \
 " " \
 "USAGE: transflac [input_flac_directory] [output_lossy_directory] [lossy_codec] [codec_quality]" \
-"       transflac quit     - Immediately exit script" \
-"       transflac exit     - Immediately exit script" \
+"       transflac quit     - Immediately exit" \
+"       transflac exit     - Immediately exit" \
 "       transflac -h       - Display HELP" \
 "       transflac --help   - Display HELP" \
 " " \
