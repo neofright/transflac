@@ -55,7 +55,7 @@ codec_filetype["MP3"]="mp3"
 
 declare -A process_name
 process_name["OPUS"]="opusenc"
-process_name["OGG"]="oggenc"
+process_name["OGG"]="ffmpeg"
 process_name["AAC"]="ffmpeg"
 process_name["MP3"]="ffmpeg"
 
