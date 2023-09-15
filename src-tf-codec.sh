@@ -42,7 +42,7 @@ then
 				"$file" "${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" &;;
 		"OGG"	)
 			ffmpeg -nostats -loglevel -0 -i "$file" \
-				-c:a libvorbis -qscale:a "${quality_ogg[$CODEC_QUALITY]}" \
+				-vn -c:a libvorbis -qscale:a "${quality_ogg[$CODEC_QUALITY]}" \
 				"${rp_output_lossy_dir}${filedir}/${filename}.${codec_filetype[$LOSSY_CODEC]}" </dev/null &;;
 		"AAC"	)
 			ffmpeg -nostats -loglevel 0 -i "$file" \
