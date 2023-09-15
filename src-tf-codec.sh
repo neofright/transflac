@@ -33,7 +33,7 @@ then
 
 	while [[ $( pgrep ${process_name[$LOSSY_CODEC]} | wc -l | tr -d ' ' ) -ge $NUMCPU ]];
 	do
-		sleep 1
+		sleep 0.1
 	done
 
 	case "$LOSSY_CODEC" in
