@@ -21,7 +21,7 @@ esac
 
 need_header="NO"
 
-source $SRC/src-tf-figlet.sh
+source "$SRC/src-tf-figlet.sh"
 
 printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s\n" "INPUT " " Directory " "$rp_input_flac_dir"
 printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s\n" "OUTPUT" " Directory " "$rp_output_lossy_dir"

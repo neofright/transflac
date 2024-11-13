@@ -32,7 +32,7 @@ printf "%s\n" "This is transflac v$VERSION" \
 " " \
 "       transflac" \
 "              You will be prompted to enter all options." \
-"              If you have customized options in "$HOME"/.transflac.conf" \
+"              If you have customized options in $HOME/.transflac.conf" \
 "              those values will be substituted." \
 " " \
 "       transflac [input_flac_directory] [output_lossy_directory] [lossy_codec] [codec_quality]" \
