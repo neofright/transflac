@@ -30,7 +30,7 @@ until [[ $valid_output == "YES" ]]; do
 			exit;;
 		esac
 	
-	rp_output_lossy_dir=$( realpath -P "$output_lossy_dir" 2>/dev/null )
+	rp_output_lossy_dir=$( realpath "$output_lossy_dir" 2>/dev/null )
 	if [[ -d "$rp_output_lossy_dir" ]];
 	then
 		if [[ -w "$rp_output_lossy_dir" ]];

@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/env bash
 #
 # Copyright © 2015-2019 Gerald B. Cox
 #
@@ -15,7 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-SRC="/usr/libexec/transflac"
+if [[ $(uname) == "Darwin" ]]
+then
+	SRC="${HOMEBREW_PREFIX}/libexec/transflac"
+else
+	SRC="/usr/libexec/transflac"
+fi
 
 source "$SRC/src-tf-set-colors.sh"
 source "$SRC/src-tf-set-variables.sh"
@@ -61,7 +66,7 @@ then
 	printf "${RESTORE}\n"
 fi
 
-total_processes=$( pgrep -c "${process_name[$LOSSY_CODEC]}" )
+total_processes=$( pgrep "${process_name[$LOSSY_CODEC]}" | wc -l | tr -d ' ' )
 remaining_processes="$total_processes"
 
 if [[ $total_processes -gt 0 ]];
@@ -71,7 +76,7 @@ fi
 
 until [[ $remaining_processes -eq "0" ]];
 do
-	remaining_processes=$( pgrep -c "${process_name[$LOSSY_CODEC]}" )
+	remaining_processes=$( pgrep "${process_name[$LOSSY_CODEC]}" | wc -l | tr -d ' ' )
 	if [[ "$remaining_processes" -gt "$total_processes" ]];
 	then	
 		remaining_processes="$total_processes"
@@ -81,7 +86,7 @@ do
 	percent_complete=${percent_complete%.*}
 
 	source "$SRC/src-tf-progress-bar.sh" "$processes_complete" "$total_processes"
-	sleep 1s
+	sleep 1
 done
 
 if [[ "$ARTSYNC" == "YES" ]];
