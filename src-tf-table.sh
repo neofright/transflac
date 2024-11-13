@@ -20,11 +20,11 @@ case $BASH_SOURCE in
 esac
 
 declare -A quality_opus
-quality_opus["LOW"]="48"
-quality_opus["MEDIUM"]="64"
-quality_opus["STANDARD"]="96"
-quality_opus["HIGH"]="128"
-quality_opus["PREMIUM"]="192"
+quality_opus["LOW"]="48k"
+quality_opus["MEDIUM"]="64k"
+quality_opus["STANDARD"]="96k"
+quality_opus["HIGH"]="128k"
+quality_opus["PREMIUM"]="192k"
 
 declare -A quality_ogg
 quality_ogg["LOW"]="1"
@@ -54,8 +54,8 @@ codec_filetype["AAC"]="m4a"
 codec_filetype["MP3"]="mp3"
 
 declare -A process_name
-process_name["OPUS"]="opusenc"
-process_name["OGG"]="oggenc"
+process_name["OPUS"]="ffmpeg"
+process_name["OGG"]="ffmpeg"
 process_name["AAC"]="ffmpeg"
 process_name["MP3"]="ffmpeg"
 

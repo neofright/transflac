@@ -38,11 +38,13 @@ then
 
 	case "$LOSSY_CODEC" in
 		"OPUS"	)
-			opusenc --quiet --bitrate "${quality_opus[$CODEC_QUALITY]}" \
-				"$file" "$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" &;;
+			ffmpeg -nostdin -nostats -loglevel 0 -i "$file" \
+				-vn -c:a libopus -b:a "${quality_opus[$CODEC_QUALITY]}" \
+				"$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" &;;
 		"OGG"	)
-			oggenc --quality "${quality_ogg[$CODEC_QUALITY]}" \
-				--quiet "$file" -o "$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" &;;
+			ffmpeg -nostdin -nostats -loglevel 0 -i "$file" \
+				-vn -c:a libvorbis -qscale:a "${quality_ogg[$CODEC_QUALITY]}" \
+				"$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" &;;
 		"AAC"	)
 			ffmpeg -nostdin -nostats -loglevel 0 -i "$file" \
 				-c:a libfdk_aac -vbr "${quality_aac[$CODEC_QUALITY]}" \
