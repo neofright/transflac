@@ -22,7 +22,12 @@ esac
 VERSION="1.2.6"
 ARTSYNC="YES"
 FIGFONT="small"
-NUMCPU="$( nproc --all )"
+if [[ $(uname) == "Darwin" ]]
+then
+	NUMCPU="$(sysctl -n hw.logicalcpu)"
+else
+	NUMCPU="$( nproc --all )"
+fi
 
 input_flac_dir="$1"
 output_lossy_dir="$2"

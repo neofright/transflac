@@ -1,12 +1,19 @@
 package-name = transflac
 package-version = 1.2.6
 INSTALL = /usr/bin/install -p
+UNAME := $(shell uname)
+ifeq ($(UNAME), Linux)
+	prefix = /usr/local
+	sysconfdir = /etc
+endif
+ifeq ($(UNAME), Darwin)
+	prefix = ${HOMEBREW_PREFIX}
+	sysconfdir = ${HOMEBREW_PREFIX}/etc
+endif
 
-prefix = /usr/local
 exec-prefix = $(prefix)
 bindir = $(exec-prefix)/bin
 libexecdir = $(prefix)/libexec/$(package-name)
-sysconfdir = /etc
 datarootdir = $(prefix)/share
 docdir = $(datarootdir)/doc/$(package-name)
 licensedir = $(datarootdir)/licenses/$(package-name)
