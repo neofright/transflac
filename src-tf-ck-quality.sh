@@ -35,15 +35,15 @@ until [[ $valid_quality == "YES" ]]; do
 		"QUIT"|"EXIT"	)
 			if [[ $output_dir_existed == "NO" ]];
 			then
-				rmdir $output_lossy_dir &> /dev/null
+				rmdir "$output_lossy_dir" &> /dev/null
 			fi
 			printf "${CERROR}%s\n${RESTORE}\n" "Exiting.  You entered $codec_quality."
 			exit;;
 		"-H"|"--HELP"▷⋅⋅)
-			source $SRC/src-tf-help.sh
+			source "$SRC/src-tf-help.sh"
 			exit;;
 		*	)
-			source $SRC/src-tf-figlet.sh
+			source "$SRC/src-tf-figlet.sh"
 			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 			printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 			printf "${CNOTICE}%s${CHOICE}%s\n\n" "Transcoding: " "FLAC to $LOSSY_CODEC"
