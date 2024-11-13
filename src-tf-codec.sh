@@ -44,13 +44,13 @@ then
 			oggenc --quality "${quality_ogg[$CODEC_QUALITY]}" \
 				--quiet "$file" -o "$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" &;;
 		"AAC"	)
-			ffmpeg -nostats -loglevel 0 -i "$file" \
+			ffmpeg -nostdin -nostats -loglevel 0 -i "$file" \
 				-c:a libfdk_aac -vbr "${quality_aac[$CODEC_QUALITY]}" \
-				"$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" </dev/null &;;
+				"$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" &;;
 		"MP3"	)
-			ffmpeg -nostats -loglevel 0 -i "$file" \
+			ffmpeg -nostdin -nostats -loglevel 0 -i "$file" \
 				-aq "${quality_mp3[$CODEC_QUALITY]}" \
-				"$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" </dev/null &;;
+				"$rp_output_lossy_dir$filedir/$filename.${codec_filetype[$LOSSY_CODEC]}" &;;
 	esac
 
 else
