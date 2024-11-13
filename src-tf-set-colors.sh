@@ -15,8 +15,8 @@
 
 case $BASH_SOURCE in
 	$0	)
-	printf "%sScript must be invoked via source command\n"
-	printf "%sExiting\n"
+	printf "Script must be invoked via source command\n"
+	printf "Exiting\n"
 	exit 1;;
 esac
 
