@@ -76,7 +76,7 @@ do
 	then	
 		remaining_processes="$total_processes"
 	fi
-	processes_complete=$(( $total_processes-$remaining_processes ))
+	processes_complete=$(( total_processes-remaining_processes ))
 	percent_complete=$(bc <<< "scale=2;($processes_complete/$total_processes)*100")
 	percent_complete=${percent_complete%.*}
 
