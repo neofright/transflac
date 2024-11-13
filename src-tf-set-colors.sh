@@ -14,7 +14,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 case $BASH_SOURCE in
-	$0	)
+	"$0"	)
 	printf "Script must be invoked via source command\n"
 	printf "Exiting\n"
 	exit 1;;
