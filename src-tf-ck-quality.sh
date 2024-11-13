@@ -53,7 +53,7 @@ until [[ $valid_quality == "YES" ]]; do
 			fi
 			printf "${CQUESTION}%s\n" "Please enter desired CODEC QUALITY"
 			printf "${CHOICE}%s${CPROMPT}\n" "$supported_quality"
-			read -p '[ENTER]:  ' codec_quality
+			read -rp '[ENTER]:  ' codec_quality
 			printf "${RESTORE}\n";;
 	esac
 

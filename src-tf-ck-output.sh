@@ -61,7 +61,7 @@ until [[ $valid_output == "YES" ]]; do
 			printf "${CERROR}%s${CHOICE}%s${RESTORE}\n\n" "Error Description:  " "$dir_error"
 		fi
 		printf "${CQUESTION}%s${CPROMPT}\n" "Please enter output directory and press"
-		read -ep "[ENTER]:  " output_lossy_dir lossy_codec codec_quality
+		read -rep "[ENTER]:  " output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"
 	fi
 

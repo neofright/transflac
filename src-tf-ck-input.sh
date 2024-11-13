@@ -52,7 +52,7 @@ esac
 			printf "${CERROR}%s${CHOICE}%s${RESTORE}\n\n" "Invalid FLAC Directory:  " "$input_flac_dir"
 		fi
 		printf "${CQUESTION}%s${CPROMPT}\n" "Please enter input FLAC directory and press"
-		read -ep "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality
+		read -rep "[ENTER]:  " input_flac_dir output_lossy_dir lossy_codec codec_quality
 		printf "${RESTORE}\n"
 	fi
 

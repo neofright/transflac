@@ -54,7 +54,7 @@ until [[ $valid_codec == "YES" ]]; do
 			fi
 			printf "${CQUESTION}%s\n" "Please enter desired output CODEC"
 			printf "${CHOICE}%s${CPROMPT}\n" "$supported_codecs"
-			read -p "[ENTER]:  " lossy_codec codec_quality
+			read -rp "[ENTER]:  " lossy_codec codec_quality
 			printf "${RESTORE}\n";;
 	esac
 
