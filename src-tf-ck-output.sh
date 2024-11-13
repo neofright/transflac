@@ -26,7 +26,7 @@ until [[ $valid_output == "YES" ]]; do
 			printf "${CERROR}%s${RESTORE}\n" "Exiting.  You entered $output_lossy_dir."
 			exit;;
 		"-H"|"--HELP"	)
-			source "SRC/src-tf-help.sh"
+			source "$SRC/src-tf-help.sh"
 			exit;;
 		esac
 	
@@ -48,7 +48,7 @@ until [[ $valid_output == "YES" ]]; do
 	if [[ "$output_dir_existed" == "YES" ]];
 	then
 		valid_output="YES"
-		source "SRC/src-tf-figlet.sh"
+		source "$SRC/src-tf-figlet.sh"
 		printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s\n" "INPUT  " "Directory " "$rp_input_flac_dir" " accepted"
 		printf "${CNOTICE}%s${CINFO}%s${CHOICE}%s${CINFO}%s${RESTORE}\n\n" "OUTPUT " "Directory " "$rp_output_lossy_dir" " accepted"
 	else
