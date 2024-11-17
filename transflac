@@ -86,7 +86,7 @@ do
 	percent_complete=${percent_complete%.*}
 
 	source "$SRC/src-tf-progress-bar.sh" "$processes_complete" "$total_processes"
-	sleep 1
+	sleep 0.1
 done
 
 if [[ "$ARTSYNC" == "YES" ]];
