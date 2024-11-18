@@ -1,5 +1,5 @@
 package-name = transflac
-package-version = 1.0.0
+package-version = 1.2.6
 INSTALL = /usr/bin/install -p
 
 prefix = /usr/local
