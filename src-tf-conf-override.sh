@@ -14,8 +14,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 case $BASH_SOURCE in
-	$0	)
-	printf "%s\nScript must be invoked via source command\nExiting\n"
+	"$0"	)
+	printf "\nScript must be invoked via source command\nExiting\n"
 	exit 1;;
 esac
 
@@ -28,37 +28,32 @@ for line in "${conf_table[@]}"; do
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
-		if [[ ${line_var} =~ $ck_index ]]; then
-			input_flac_dir=$line_var
-		fi;;
+		input_flac_dir=$line_var
+		;;
 	"output_lossy_dir"	)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
-		if [[ ${line_var} =~ $ck_index ]]; then
-			output_lossy_dir=$line_var
-		fi;;
+		output_lossy_dir=$line_var
+		;;
 	"lossy_codec"		)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
-		if [[ ${line_var} =~ $ck_index ]]; then
-			lossy_codec=$line_var
-		fi;;
+		lossy_codec=$line_var
+		;;
 	"codec_quality"		)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
-		if [[ ${line_var} =~ $ck_index ]]; then
-			codec_quality=$line_var
-		fi;;
+		codec_quality=$line_var
+		;;
 	"ARTSYNC"		)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
 		line_var=${line_var#\"}
-		if [[ ${line_var} =~ $ck_index ]]; then
-			ARTSYNC=$line_var
-		fi;;
+		ARTSYNC=$line_var
+		;;
 	"CNOTICE"			)
 		line_var=${line##*=}
 		line_var=${line_var%\"}
